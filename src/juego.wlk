@@ -13,7 +13,7 @@ object juego {
 	
 	
 	method agregarPiso(x,y){
-		const piso = new PisoMedio(position = game.at(x,y), image = "nivel1/pisoMedio")
+		const piso = new PisoMedio(position = game.at(x,y), image = "nivel1/bloqueNivel1Medio.png")
 		game.addVisual(piso)
 	}
 	method agregarColumnaAlta(x,y){
