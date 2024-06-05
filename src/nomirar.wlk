@@ -7,10 +7,160 @@ object juego {
 		game.width(50)
 		game.cellSize(20)
 		game.boardGround("fondo.png")
-		game.addVisualCharacter(pacman)
+		game.addVisualCharacter(Boss)
 		self.dibujarMuros()
 	}
 	
+	
+	}
+	///////////////////////////////////////////////////////////
+	/*
+	 * Configura los stages/niveles del juego
+	 */
+	method configurarStages() {
+		// stage 1
+		const stage1 = new Stage(
+			fondo = new Edificio(image="niveles/edificio-1.png"), 
+			imgInicial = new Pantalla (image ="fondo/stage1.jpg"))
+		
+		stage1.agregarMultiplesVentanas(1, [
+			[1,1],[2,1], [4,1], [5,1],
+			[1,2], [2,2], [4,2], [5,2],
+			[1,3], [2,3], [4,3], [5,3]
+		])
+		stage1.agregarMultiplesVentanas(2, [
+			[3,3]
+		])
+		
+		stage1.agregarMultiplesMacetas([
+			[4,3],[1,2]
+		])
+		stage1.agregarMultiplesPostigos([
+			[4,1],[1,3]
+		])
+		
+		// stage 2
+		const stage2 = new Stage(
+			fondo = new Edificio(image="niveles/edificio-2.png"),
+			imgInicial = new Pantalla (image = "fondo/stage2.jpg")
+		)
+		stage2.agregarMultiplesVentanas(1, [
+			[1,1], [2,1], [4,1], [5,1],
+			[1,2], [2,2], [4,2], [5,2],
+			[1,3], [2,3], [4,3], [5,3]
+		])
+		stage2.agregarMultiplesVentanas(2, [
+			[3,1],[3,2],[3,3]
+		])
+
+		stage2.agregarMultiplesMacetas([
+			[2,2], [3,2],[4,2]		
+		])
+		stage2.agregarMultiplesPostigos([
+			[1,2],[4,3]
+		])
+
+		// stage 3
+		const stage3 = new Stage(
+			fondo = new Edificio(image="niveles/edificio-2.png"),
+			imgInicial = new Pantalla (image = "fondo/stage3.jpg")
+		)
+		stage3.agregarMultiplesVentanas(1, [
+			[1,1], [2,1], [4,1], [5,1],
+			[1,2], [2,2], [4,2], [5,2],
+			[1,3], [2,3], [4,3], [5,3]
+		])
+		stage3.agregarMultiplesVentanas(2, [
+			[3,1],
+			[3,2],
+			[3,3]
+		])
+		stage3.agregarMultiplesMacetas([
+			[2,2], [4,2],
+			[1,3], [5,3]
+		])
+		stage3.agregarMultiplesPostigos([
+			[1,1],[3,3], [5,2]
+		])
+
+		// stage 4
+		const stage4 = new Stage(
+			fondo = new Edificio(image="niveles/edificio-2.png"),
+			imgInicial = new Pantalla (image = "fondo/stage4.jpg")
+		)
+		stage4.agregarMultiplesVentanas(1, [
+			[1,1], [2,1], [4,1], [5,1],
+			[1,2], [2,2], [4,2], [5,2],
+			[1,3], [2,3], [4,3], [5,3]
+		])
+		stage4.agregarMultiplesVentanas(2, [
+			[3,1],
+			[3,2],
+			[3,3]
+		])
+		stage4.agregarMultiplesMacetas([
+			[3,2], [4,2]
+		])
+		stage4.agregarMultiplesPostigos([
+			[1,1],[1,2], [3,2],[4,3]
+		])
+
+		// stage 5
+		const stage5 = new Stage(
+			fondo = new Edificio(image="niveles/edificio-2.png"),
+			imgInicial = new Pantalla (image = "fondo/stage5.jpg")
+		)
+		stage5.agregarMultiplesVentanas(2, [
+			[1,1], [2,1], [3,1], [4,1], [5,1],
+			[1,2], [2,2], [3,2], [4,2], [5,2],
+			[1,3], [2,3], [3,3], [4,3], [5,3]
+		])
+		stage5.agregarMultiplesMacetas([
+			[1,2],[2,2]
+
+		])
+		stage5.agregarMultiplesPostigos([
+			[1,3],[4,3],[3,2],[5,1]
+		])
+		
+		// stage 6
+			const stage6 = new Stage(
+			fondo = new Edificio(image="niveles/edificio-3.png"),
+			imgInicial = new Pantalla (image = "fondo/stage6.jpg")
+		)
+		stage6.agregarMultiplesVentanas(1,[
+			[1,1], [2,1], [3,1], [4,1], [5,1],
+			[1,2], [2,2], [3,2], [4,2], [5,2],
+			[1,3], [2,3], [3,3], [4,3], [5,3]
+		])
+		stage6.agregarMultiplesMacetas([
+			[1,2],[2,2],[5,3],[2,3]
+
+		])
+		stage6.agregarMultiplesPostigos([
+			[3,2],[4,1]
+		])
+		// stage 7
+			const stage7 = new Stage(
+			fondo = new Edificio(image="niveles/edificio-3.png"),
+			imgInicial = new Pantalla (image = "fondo/stage7.jpg")
+		)
+		stage7.agregarMultiplesVentanas(2,[
+			[1,1], [2,1], [3,1], [4,1], [5,1],
+			[1,2], [2,2], [3,2], [4,2], [5,2],
+			[1,3], [2,3], [3,3], [4,3], [5,3]
+		])
+		stage7.agregarMultiplesMacetas([
+			[3,2], [4,2]
+
+		])
+		stage7.agregarMultiplesPostigos([
+			[1,1],[1,3], [3,2],[4,3]
+		])
+	
+	
+	
+	///////////////////////////////////////////////////////
 	
 	method agregarPiso(x,y){
 		const piso = new PisoMedio(position = game.at(x,y), image = "nivel1/bloqueNivel1Medio.png")
@@ -30,7 +180,7 @@ object juego {
 	}
 
 	method dibujarMuros() {
-
+      mapa1.forEach({x=> mapa1.lineasDeMuros().})
 		self.dibujarLineaDeMuros(42, [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
 		self.dibujarLineaDeMuros(41, [3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
 		self.dibujarLineaDeMuros(40, [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2])
@@ -74,12 +224,12 @@ object juego {
 		self.dibujarLineaDeMuros(02, [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
 		self.dibujarLineaDeMuros(01, [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
 	}
-	method dibujarLineaDeMuros(y, vectorFila) {		
-		(0..vectorFila.size()-1).forEach({i=> 
-			if(vectorFila.get(i) == 1 ) {
-				self.agregarPiso(i, y)
-			}
-			 if(vectorFila.get(i) == 2){
+	method dibujarLineaDeMuros(mapa1) {		
+		mapa1.forEach({i=> i.linea().forEach({x=> if (x==1) self.agregarPiso(i, y) else if (x==2) )
+	//		if(linea.get(i.linea() == 1 ) {
+	//			self.agregarPiso(i, y)
+	//		}
+			 if(vectorFila.get(i.linea()) == 2){
 				self.agregarColumnaAlta(i,y)
 			}
 			 if(vectorFila.get(i) == 3){

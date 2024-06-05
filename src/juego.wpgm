@@ -1,6 +1,7 @@
 import wollok.game.*
-import juego.*
+import juego2.*
 import elementos.*
+import mapas.*
 
 program snowBros {
 	juego.preparar()
