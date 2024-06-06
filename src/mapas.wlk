@@ -1,6 +1,5 @@
 import wollok.game.*
 import juego2.*
-import caracter.*
 import elementos.*
 
 class Mapa  {
@@ -10,8 +9,12 @@ class Mapa  {
 	const property nivel
 }
 			//MAPA DE NIVEL 1
-	const mapaNivel1= new Mapa(lineasDeMuros=[[0,3], [1,3], [2,3], [3,3], [4,3],[5,3],
-		[0,4], [1,4], [2,4], [3,4], [4,4],[5,4]
+	const mapaNivel1= new Mapa(lineasDeMuros=[
+		[0,3], [1,3], [2,3], [3,3], [4,3],  [7,3], [8,3], [9,3], [10,3], [13,3],[14,3], [15,3],[16,3],[17,3],
+		[4,6], [5,6], [6,6],[7,6], [8,6],[9,6],[10,6], [11,6], [12,6],[13,6],
+		[0,9],[1,9],[2,9],[3,9],[4,9],[5,9], [6,9], [7,9], [11,9], [12,9], [13,9],[14,9],[15,9],[16,9],[17,9],
+		[5,12], [6,12],[7,12], [8,12],[9,12],[10,12], [11,12], [12,12],[13,12],
+		[8,13],[9,13],[10,13]
 	], nivel=1)
 
 	const mapaNIvel2= new Mapa(lineasDeMuros=[], nivel=2)

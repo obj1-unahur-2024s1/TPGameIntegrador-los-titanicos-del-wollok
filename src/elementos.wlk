@@ -1,5 +1,5 @@
 import wollok.game.*
-import juegos2.*
+import juego2.*
 
 
 class Bloques  {
