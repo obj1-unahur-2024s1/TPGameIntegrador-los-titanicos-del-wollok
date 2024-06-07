@@ -15,7 +15,7 @@ object juego{
 		self.dibujarPisoYTecho(mapaNivel1)
 		self.agregarParedes()
 		self.agregarTodosLosBloques(mapaNivel1)
-		self.reproducirMusica()
+		//self.reproducirMusica()
 	}
 	
 	method reproducirMusica(){

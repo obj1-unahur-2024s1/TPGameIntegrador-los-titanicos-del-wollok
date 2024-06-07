@@ -1,9 +1,57 @@
 import wollok.game.*
+
 import juego2.*
 import elementos.*
 import mapas.*
 
 program snowBros {
+	var contador = 0
 	juego.preparar()
+	
+	keyboard.right().onPressDo {
+		boss.irHaciaDerecha()
+		if(!boss.hayBloqueAbajo()){
+			game.onTick(500, 'bajar', {=>
+				boss.bajar()
+				if(boss.pacmanEstaSobrePiso()){
+					game.removeTickEvent('bajar')
+				}
+			})
+		}
+	}
+	keyboard.left().onPressDo {
+		boss.irHaciaIzquierda()
+		if(!boss.hayBloqueAbajo()){
+			game.onTick(500, 'bajar', {=>
+				boss.bajar()
+				if(boss.pacmanEstaSobrePiso()){
+					game.removeTickEvent('bajar')
+				}
+			})
+		}
+	}
+	keyboard.up().onPressDo {
+		game.onTick(500, 'movimiento', {=>
+			boss.saltar()
+			contador = contador + 1
+			if(contador == 3){
+				game.removeTickEvent('movimiento')
+				contador = 0
+				game.onTick(500, 'movimientoNuevo', {=>
+					
+					if(boss.pacmanEstaSobrePiso()){
+						game.removeTickEvent('movimientoNuevo')
+					}
+					boss.bajar()
+				})
+			}
+			
+		})
+	}
+	keyboard.down().onPressDo {
+		boss.irHaciaAbajo()
+	}
+	
+	
 	juego.iniciar()
 }
