@@ -6,7 +6,20 @@ import mapas.*
 
 program snowBros {
 	var contador = 0
+	
 	juego.preparar()
+	
+	const enemigos = [ new Enemigo(position=game.at(9,4)), new Enemigo(position=game.at(9,7)), new Enemigo(position=game.at(3,10))]
+	
+	
+	enemigos.forEach({
+		rival => 
+		game.addVisual(rival)
+		game.whenCollideDo(rival, {p => p.impactoCon(rival) p.resetPosition(rival)})
+		game.onTick(350, "perseguir", {=>
+			rival.perseguir()
+		})
+	})
 	
 	keyboard.right().onPressDo {
 		boss.irHaciaDerecha()
@@ -19,6 +32,7 @@ program snowBros {
 			})
 		}
 	}
+	
 	keyboard.left().onPressDo {
 		boss.irHaciaIzquierda()
 		if(!boss.hayBloqueAbajo()){
@@ -30,8 +44,10 @@ program snowBros {
 			})
 		}
 	}
+	
 	keyboard.up().onPressDo {
-		game.onTick(100, 'movimiento', {=>
+
+		game.onTick(50, 'movimiento', {=>
 			boss.saltar()
 			contador = contador + 1
 			if(contador == 3){
@@ -48,10 +64,43 @@ program snowBros {
 			
 		})
 	}
+	
 	keyboard.down().onPressDo {
 		boss.irHaciaAbajo()
 	}
 	
+	
+	keyboard.a().onPressDo{
+			const proyectil = new Proyectil(image= 'nivel1/disparoIzquierda.png')
+			proyectil.irHaciaIzquierda()
+			game.addVisual(proyectil)
+			var id = proyectil.identity().toString()
+		game.onTick(50, "movimiento" + id, {=> 
+			proyectil.irHaciaIzquierda()
+			if(proyectil.position().x() == -1){
+				proyectil.removerSiEsta()
+				game.removeTickEvent("movimiento" + id )
+				
+		} 
+		})
+	}
+	
+	keyboard.d().onPressDo {const proyectil = new Proyectil(image= 'nivel1/disparoDerecha.png') 
+			proyectil.irHaciaDerecha()
+			game.addVisual(proyectil)
+			var id = proyectil.identity().toString()
+			game.onTick(50, "movimiento" + id , {=> 
+			
+			proyectil.irHaciaDerecha()
+			
+				if(proyectil.position().x() == 19){
+				proyectil.removerSiEsta()
+				game.removeTickEvent("movimiento" + id )
+				
+		} 
+		})
+		
+	}
 	
 	juego.iniciar()
 }

@@ -11,6 +11,7 @@ object juego{
 		game.cellSize(50)
 		game.boardGround("fondo.png")
 		game.addVisualCharacter(boss)
+		game.addVisual(nivelSalud)
 		
 		self.dibujarPisoYTecho(mapaNivel1)
 		self.agregarParedes()
@@ -68,7 +69,8 @@ object juego{
 			self.agregarColumnaBajaIzq(17, posicion)
 			posicion = posicion + 1
 					})	}
-
+	
+	
 	method iniciar(){
 		game.start()}	
 	

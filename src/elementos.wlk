@@ -3,6 +3,12 @@ import juego2.*
 import mapas.*
 
 
+
+class Visual{
+	var property image
+	var property position
+}
+
 class Bloques  {
 	const property image 
 	var property position
@@ -11,6 +17,13 @@ class Bloques  {
 
 class PisoMedio inherits Bloques{
 
+	method impactoCon(rival){
+		
+	}
+	
+	method resetPosition(rival){
+		
+	}
 }
 class Columna inherits Bloques {
 	
@@ -26,6 +39,8 @@ class TipoElemento{
 object boss {
 	var property image = "nivel1/personaje.png"
 	var property position = game.at(2,1)
+	
+	var vidas = 3
 	
 	method irHaciaDerecha(){
 	var posicionx = self.position().x()
@@ -104,5 +119,230 @@ object boss {
 	    var posiciony = self.position().y()
 		return self.hayBloqueAbajo() or posiciony == 1
 	}
+	
+	method vidas(){
+		return vidas
+	}
+	
+	method restarVidas(){
+		vidas = 0.max(vidas - 1)
+	}
+	
+	
+	method impactoCon(rival){
+		self.restarVidas()
+		nivelSalud.perderVida(self.vidas())
+		position = game.at(1,1)
+		if(self.vidas() == 0){
+			game.stop()
+		}
+		
+	}
+	
+	method resetPosition(rival){
+		
+	}
 }
 
+
+class Proyectil inherits Visual(
+	position = game.at(boss.position().x(), boss.position().y())){
+	
+	method irHaciaDerecha(){
+		
+		var positionx = position.x() + 1
+		
+		position = game.at(positionx, position.y())
+		
+	}
+	
+	method irHaciaIzquierda(){
+		
+		var positionx = position.x() - 1
+		
+		position = game.at(positionx, position.y())
+		
+	}
+	
+	method impactoCon(rival){
+			
+			rival.vidas(rival.vidas() - 1 )
+			if(rival.vidas() == 0){
+				game.removeVisual(rival)
+			}
+			else if(rival.vidas()== 2){
+				rival.image('nivel1/image.png')
+			}
+			game.removeVisual(self)
+	}
+	
+	method resetPosition(rival){
+		
+	}
+	
+	
+	
+	method removerSiEsta(){
+		if(game.hasVisual(self)){
+			game.removeVisual(self)
+		}
+	}
+
+}
+
+
+class Enemigo inherits Visual
+		(image="nivel1/enemigo1.png"){
+	
+		var property vidas = 3
+		
+		
+		method impactoCon(rival){
+			
+		}
+		
+		
+		
+		method resetPosition(rival){
+			
+			var posx = self.position().x()
+			var posy = self.position().y()
+			
+			rival.position(game.at(posx, posy)) 
+		}		
+		method perseguir(){
+			
+		var posx = self.position().x()
+		var posy = self.position().y()
+		
+		
+		
+		
+		
+	
+		
+		if(boss.position().x() > self.position().x() and !self.hayBloqueHaciaDerecha())
+		{position = game.at(posx + 1, posy) self.caer() } else self.verHaciaAbajo()
+			
+		}
+		
+		
+		method caer(){
+			
+			
+			if(!self.hayBloqueHaciaAbajo()){
+			game.onTick(100, 'bajar3', {=>
+				self.bajar()
+				if(self.enemigoEstaSobrePiso()){
+					game.removeTickEvent('bajar3')
+				}
+				
+			})
+		}
+		}
+		
+		method subir(){
+			var posicionx = self.position().x()
+		    var posiciony = self.position().y()
+		    
+		   
+		    	
+		    
+		}
+		
+		method bajar(){
+			var posicionx = self.position().x()
+		    var posiciony = self.position().y()
+		    
+		    if(posiciony > 1 and not self.hayBloqueHaciaAbajo()){
+		    	position= game.at(posicionx, posiciony -1)
+		    }
+	    	
+		}
+		
+		method enemigoEstaSobrePiso(){
+			var posicionx = self.position().x()
+	    	var posiciony = self.position().y()
+		return self.hayBloqueHaciaAbajo() or posiciony == 1
+		}
+		
+		
+		
+		
+		method hayBloqueHaciaDerecha(){
+			var posx = self.position().x()
+			var posy = self.position().y()
+			return mapaNivel1.lineasDeMuros().any({e => e.get(1)==posy   and e.get(0) == posx + 1})
+			
+		}
+		
+		method hayBloqueHaciaAbajo(){
+			var posx = self.position().x()
+		    var posy = self.position().y()
+			return mapaNivel1.lineasDeMuros().any({e => e.get(1)==posy - 1 and e.get(0) == posx})
+		}
+		
+		method hayBloqueHaciaIzquierda(){
+			var posx = self.position().x()
+		var posy = self.position().y()
+			return mapaNivel1.lineasDeMuros().any({e => e.get(1)==posy   and e.get(0) == posx - 1})
+		}
+		
+		method hayBloqueHaciaArriba(){
+			var posx = self.position().x()
+			var posy = self.position().y()
+			return mapaNivel1.lineasDeMuros().any({e => e.get(1) == posy + 1 and e.get(0) == posx})
+		}
+		
+		method verHaciaAbajo(){
+			var posx = self.position().x()
+		    var posy = self.position().y()
+			if(boss.position().y() < self.position().y() and !self.hayBloqueHaciaAbajo()) {position = game.at(posx, posy - 1)} else {self.verHaciaAtras()}
+		}
+		
+		method verHaciaAtras(){
+			var posx = self.position().x()
+			var posy = self.position().y()
+			if(boss.position().x() < self.position().x() and !self.hayBloqueHaciaIzquierda()){position = game.at(posx - 1, posy) self.caer()} else self.saltar()
+			
+		}
+		
+		method verHaciaArriba(){
+			var posx = self.position().x()
+			var posy = self.position().y()
+			
+			if(boss.position().y() > self.position().y()) self.saltar()
+		}
+		
+		method saltar(){
+			var contador = 0
+			
+			game.onTick(100, 'saltoEnemigo', {=>
+				position= game.at(self.position().x(), self.position().y()+1)
+				contador = contador + 1
+				
+				if(contador == 3){
+					game.removeTickEvent('saltoEnemigo')
+					contador = 0
+					game.onTick(100, 'movimientoNuevo', {=>
+					if(self.enemigoEstaSobrePiso()){
+						game.removeTickEvent('movimientoNuevo')
+						contador = 0
+					}
+					self.bajar()
+				})
+				}
+			})
+		}
+}
+
+
+
+object nivelSalud inherits Visual(
+	position = game.at(1,14),
+	image="nivel1/3Vidas.png"
+){
+	method perderVida(cant){
+		image = "nivel1/" + cant + "vidas.png"
+	}
+}
