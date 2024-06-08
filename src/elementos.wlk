@@ -17,7 +17,7 @@ class Bloques  {
 
 class PisoMedio inherits Bloques{
 
-	method impactoCon(rival){
+	method impactoCon(rival, id){
 		
 	}
 	
@@ -67,8 +67,6 @@ object boss {
 		//if(mapaNivel1.lineasDeMuros().any({e => e.get(1)==posiciony  and e.get(0) == posicionx}) or self.pacmanEstaSobrePiso()){
 			position = game.at(posicionx , posiciony + 1 )	
 		//}
-		
-		
 	}
 	
 	
@@ -129,7 +127,7 @@ object boss {
 	}
 	
 	
-	method impactoCon(rival){
+	method impactoCon(rival, id){
 		self.restarVidas()
 		nivelSalud.perderVida(self.vidas())
 		position = game.at(1,1)
@@ -164,15 +162,11 @@ class Proyectil inherits Visual(
 		
 	}
 	
-	method impactoCon(rival){
+	method impactoCon(rival, id){
 			
-			rival.vidas(rival.vidas() - 1 )
-			if(rival.vidas() == 0){
-				game.removeVisual(rival)
-			}
-			else if(rival.vidas()== 2){
-				rival.image('nivel1/image.png')
-			}
+			rival.perderVidas()
+			rival.morir(id)
+			rival.cambiarImagen()
 			game.removeVisual(self)
 	}
 	
@@ -192,12 +186,12 @@ class Proyectil inherits Visual(
 
 
 class Enemigo inherits Visual
-		(image="nivel1/enemigo1.png"){
+		(image="nivel1/enemigo3.png"){
 	
-		var property vidas = 3
+		var property vidas = 4
 		
 		
-		method impactoCon(rival){
+		method impactoCon(rival, id){
 			
 		}
 		
@@ -334,6 +328,26 @@ class Enemigo inherits Visual
 				}
 			})
 		}
+		
+		
+		
+		method perderVidas(){
+			vidas = vidas -1
+		}
+		
+		method morir(id){
+			if(vidas == 0){
+				game.removeVisual(self)
+				game.removeTickEvent("perseguir" + id)
+			}
+		}
+		
+		method cambiarImagen(){
+			
+			
+			image = "nivel1/enemigo" + vidas + ".png"
+			
+		}
 }
 
 
@@ -346,3 +360,40 @@ object nivelSalud inherits Visual(
 		image = "nivel1/" + cant + "vidas.png"
 	}
 }
+
+
+
+
+
+/*
+ * 
+ * method cambiar tiempo
+ * 
+ * var numero = 30 - 29
+ * var numeroEnLtras = numero.toString() "30" - "29"
+ * 
+ * 
+ * objeto numero1  posicion fija image= munero/ + numeroEnLetras.get(0)
+ * objeto numero2 posicion fija image= numero/ + numeroEN....get(1)
+ * \
+ * 
+ *					30
+ * 					29
+ * 					28
+ * 					27
+ * 
+ * game.ontIck(1000, ;temporizador, {=>
+ * 		
+ * 		numero = nmumero -1
+ * 		numeroEnLetras = numero.toString()
+ * 		numero1.image(munero/ + numeroEnLetras.get(0))
+ * 		numero2.image(numero/ + numeroEnLtras....get(1))
+ * 
+ * })
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
