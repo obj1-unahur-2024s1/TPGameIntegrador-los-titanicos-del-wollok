@@ -11,10 +11,10 @@ program snowBros {
 	keyboard.right().onPressDo {
 		boss.irHaciaDerecha()
 		if(!boss.hayBloqueAbajo()){
-			game.onTick(500, 'bajar', {=>
+			game.onTick(100, 'bajar2', {=>
 				boss.bajar()
 				if(boss.pacmanEstaSobrePiso()){
-					game.removeTickEvent('bajar')
+					game.removeTickEvent('bajar2')
 				}
 			})
 		}
@@ -22,25 +22,25 @@ program snowBros {
 	keyboard.left().onPressDo {
 		boss.irHaciaIzquierda()
 		if(!boss.hayBloqueAbajo()){
-			game.onTick(500, 'bajar', {=>
+			game.onTick(100, 'bajar1', {=>
 				boss.bajar()
 				if(boss.pacmanEstaSobrePiso()){
-					game.removeTickEvent('bajar')
+					game.removeTickEvent('bajar1')
 				}
 			})
 		}
 	}
 	keyboard.up().onPressDo {
-		game.onTick(500, 'movimiento', {=>
+		game.onTick(100, 'movimiento', {=>
 			boss.saltar()
 			contador = contador + 1
 			if(contador == 3){
 				game.removeTickEvent('movimiento')
 				contador = 0
-				game.onTick(500, 'movimientoNuevo', {=>
-					
+				game.onTick(100, 'movimientoNuevo', {=>
 					if(boss.pacmanEstaSobrePiso()){
 						game.removeTickEvent('movimientoNuevo')
+						contador = 0
 					}
 					boss.bajar()
 				})

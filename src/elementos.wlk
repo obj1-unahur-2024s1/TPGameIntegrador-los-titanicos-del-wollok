@@ -31,39 +31,35 @@ object boss {
 	var posicionx = self.position().x()
 	var posiciony = self.position().y()
 		//verificar si puede moverse
-		if(mapaNivel1.lineasDeMuros().any({e => e.get(1)==posiciony and e.get(0) == posicionx})){
-			position = game.at(posicionx - 1, posiciony )	
+		if(mapaNivel1.lineasDeMuros().any({e => e.get(1)==posiciony and e.get(0) == posicionx}) or (posicionx == 17)){
+			position = game.at(posicionx - 1, posiciony )	 
 		}
 	}
 
 	method irHaciaIzquierda(){
 		var posicionx = self.position().x()
-	var posiciony = self.position().y()
-		if(mapaNivel1.lineasDeMuros().any({e => e.get(1)==posiciony and e.get(0) == posicionx})){
+		var posiciony = self.position().y()
+		if(mapaNivel1.lineasDeMuros().any({e => e.get(1)==posiciony and e.get(0) == posicionx}) or (posicionx == 0)){
 			position = game.at(posicionx + 1, posiciony )	
 		}
 	}
 	
-	method irHaciaArriba(){
-		var posicionx = self.position().x()
-	var posiciony = self.position().y()
-		if(mapaNivel1.lineasDeMuros().any({e => e.get(1)==posiciony + 1 and e.get(0) == posicionx})){
-			position = game.at(posicionx , posiciony - 1 )	
-		}
-	}
+	
 	
 	method irHaciaAbajo(){
 		var posicionx = self.position().x()
 	    var posiciony = self.position().y()
-		if(mapaNivel1.lineasDeMuros().any({e => e.get(1)==posiciony  and e.get(0) == posicionx}) or self.pacmanEstaSobrePiso()){
+		//if(mapaNivel1.lineasDeMuros().any({e => e.get(1)==posiciony  and e.get(0) == posicionx}) or self.pacmanEstaSobrePiso()){
 			position = game.at(posicionx , posiciony + 1 )	
-		}
+		//}
 		
 		
 	}
 	
+	
+	//sube en x
 	method saltar(){
-		var contador = 0
+		
 		
 		var posicionx = self.position().x()
 	    var posiciony = self.position().y()
@@ -73,24 +69,40 @@ object boss {
 	   
 	}
 	
+	//retorna si tengo un bloque abajo, no bordes
 	method hayBloqueAbajo(){
 		var posicionx = self.position().x()
 		var posiciony = self.position().y()
 		return mapaNivel1.lineasDeMuros().any({e => e.get(1) ==posiciony -1 and e.get(0) == posicionx})
 	}
 	
+	
+	//si no estoy en borde y no hay bloque baja
 	method bajar(){
 		var posicionx = self.position().x()
 	    var posiciony = self.position().y()
 	    
-	    if(posiciony > 1 and not self.hayBloqueAbajo()){position= game.at(posicionx, posiciony -1)}
+	    if(posiciony > 1 and not self.hayBloqueAbajo()){
+	    	position= game.at(posicionx, posiciony -1)
+	    }
 	    	
 	}
+	
+	method hayUnBorde(){
+		var posicionx = self.position().x()
+	    var posiciony = self.position().y()
+	    
+	    
+	    return (posicionx == 18) or (posicionx -1 == 0)
+	}
+	
+	
+	//retorna si esta sobre un bloque o si esta sobre un borde
 	
 	method pacmanEstaSobrePiso(){
 		var posicionx = self.position().x()
 	    var posiciony = self.position().y()
-		return (mapaNivel1.lineasDeMuros().any({e => e.get(1) == posiciony -1 and e.get(0) == posicionx})) or (posiciony == 0)
+		return self.hayBloqueAbajo() or posiciony == 1
 	}
 }
 
