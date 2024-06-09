@@ -1,6 +1,6 @@
 import wollok.game.*
 
-import juego2.*
+import juego.*
 import elementos.*
 import mapas.*
 
@@ -27,7 +27,7 @@ program snowBros {
 		if(!boss.hayBloqueAbajo()){
 			game.onTick(100, 'bajar2', {=>
 				boss.bajar()
-				if(boss.pacmanEstaSobrePiso()){
+				if(boss.estaSobrePiso()){
 					game.removeTickEvent('bajar2')
 				}
 			})
@@ -39,7 +39,7 @@ program snowBros {
 		if(!boss.hayBloqueAbajo()){
 			game.onTick(100, 'bajar1', {=>
 				boss.bajar()
-				if(boss.pacmanEstaSobrePiso()){
+				if(boss.estaSobrePiso()){
 					game.removeTickEvent('bajar1')
 				}
 			})
@@ -55,7 +55,7 @@ program snowBros {
 				game.removeTickEvent('movimiento')
 				contador = 0
 				game.onTick(100, 'movimientoNuevo', {=>
-					if(boss.pacmanEstaSobrePiso()){
+					if(boss.estaSobrePiso()){
 						game.removeTickEvent('movimientoNuevo')
 						contador = 0
 					}

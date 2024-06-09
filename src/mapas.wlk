@@ -1,5 +1,5 @@
 import wollok.game.*
-import juego2.*
+import juego.*
 import elementos.*
 
 class Mapa  {

@@ -1,5 +1,5 @@
 import wollok.game.*
-import juego2.*
+import juego.*
 import mapas.*
 
 
@@ -64,7 +64,7 @@ object boss {
 	method irHaciaAbajo(){
 		var posicionx = self.position().x()
 	    var posiciony = self.position().y()
-		//if(mapaNivel1.lineasDeMuros().any({e => e.get(1)==posiciony  and e.get(0) == posicionx}) or self.pacmanEstaSobrePiso()){
+		//if(mapaNivel1.lineasDeMuros().any({e => e.get(1)==posiciony  and e.get(0) == posicionx}) or self.estaSobrePiso()){
 			position = game.at(posicionx , posiciony + 1 )	
 		//}
 	}
@@ -112,7 +112,7 @@ object boss {
 	
 	//retorna si esta sobre un bloque o si esta sobre un borde
 	
-	method pacmanEstaSobrePiso(){
+	method estaSobrePiso(){
 		var posicionx = self.position().x()
 	    var posiciony = self.position().y()
 		return self.hayBloqueAbajo() or posiciony == 1
