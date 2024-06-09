@@ -184,18 +184,32 @@ class Proyectil inherits Visual(
 
 }
 
+
+
 class Enemigo inherits Visual
 		(image="nivel1/enemigo3.png"){
 	
 		var property vidas = 4
 		
 		
+		method enemigosPersiguiendo(lista){
+			enemigos.forEach({
+		rival => 
+		var id = rival.identity().toString()
+		game.addVisual(rival)
+		game.whenCollideDo(rival, {p => p.impactoCon(rival, id ) p.resetPosition(rival)})
+		game.onTick(350, "perseguir" + id, {=>
+			rival.perseguir()
+	})
+	})
+	
+	}
+		
+		
 		method impactoCon(rival, id){
 			
 		}
-		
-		
-		
+			
 		method resetPosition(rival){
 			
 			var posx = self.position().x()

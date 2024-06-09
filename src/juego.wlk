@@ -2,8 +2,9 @@ import wollok.game.*
 import mapas.*
 import elementos.*
 object juego{
+	const enemigosNivel1 = [ new Enemigo(position=game.at(9,4)), new Enemigo(position=game.at(9,7)), new Enemigo(position=game.at(3,10))]
 	
-//var piso= [[0,0],[1,0],[2,0],[3,0],[4,0],[5,0]]
+
 	method preparar(){
 		game.title("SnowBros")
 		game.height(15)
@@ -12,15 +13,20 @@ object juego{
 		game.boardGround("fondo.png")
 		game.addVisualCharacter(boss)
 		game.addVisual(nivelSalud)
-		
-		self.configurrTeclado()
+
+	
+		self.perseguirABoss(enemigosNivel1)
+		self.configurarTeclado()
 		self.dibujarPisoYTecho(mapaNivel1)
 		self.agregarParedes()
 		self.agregarTodosLosBloques(mapaNivel1)
 		//self.reproducirMusica()
 	
-	const enemigos = [ new Enemigo(position=game.at(9,4)), new Enemigo(position=game.at(9,7)), new Enemigo(position=game.at(3,10))]
-	enemigos.forEach({
+	}
+	
+	method perseguirABoss(listaDeEnemigos){
+		
+		listaDeEnemigos.forEach({
 		rival => 
 		var id = rival.identity().toString()
 		game.addVisual(rival)
@@ -29,9 +35,7 @@ object juego{
 			rival.perseguir()
 	})
 	})
-	
 	}
-	
 	
 	method reproducirMusica(){
 		var sound = game.sound("sonidos/musica.mp3")
@@ -84,7 +88,7 @@ object juego{
 			posicion = posicion + 1
 					})	}
 	
-	method configurrTeclado(){
+	method configurarTeclado(){
 		var contador = 0
 		
 		keyboard.right().onPressDo {
