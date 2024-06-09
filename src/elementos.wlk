@@ -184,7 +184,6 @@ class Proyectil inherits Visual(
 
 }
 
-
 class Enemigo inherits Visual
 		(image="nivel1/enemigo3.png"){
 	
