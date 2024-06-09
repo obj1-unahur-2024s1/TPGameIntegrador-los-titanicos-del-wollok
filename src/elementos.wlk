@@ -189,7 +189,7 @@ class Proyectil inherits Visual(
 class Enemigo inherits Visual
 		(image="nivel1/enemigo3.png"){
 	
-		var property vidas = 4
+		var property vidas = 3
 		
 		
 		method enemigosPersiguiendo(lista){
@@ -238,7 +238,7 @@ class Enemigo inherits Visual
 			
 			
 			if(!self.hayBloqueHaciaAbajo()){
-			game.onTick(100, 'bajar3', {=>
+			game.onTick(150, 'bajar3', {=>
 				self.bajar()
 				if(self.enemigoEstaSobrePiso()){
 					game.removeTickEvent('bajar3')
@@ -291,7 +291,7 @@ class Enemigo inherits Visual
 		
 		method hayBloqueHaciaIzquierda(){
 			var posx = self.position().x()
-		var posy = self.position().y()
+			var posy = self.position().y()
 			return mapaNivel1.lineasDeMuros().any({e => e.get(1)==posy   and e.get(0) == posx - 1})
 		}
 		
@@ -372,12 +372,110 @@ object nivelSalud inherits Visual(
 	method perderVida(cant){
 		image = "nivel1/" + cant + "vidas.png"
 	}
+
 }
 
 
+/*
+class Digito {
+  var property position
+  var property valor = 0
+  method image() = "numeros/" + valor + ".png" 
+}
 
 
+ * object decenaSegundos {
+	
+	var property position = game.at(14,14)
+	var property image = "nivel1/3.png" 
+	method descontarTiempo(){
+			
+	}
+}
+object unididadSegundos {
+	var property position = game.at(15,14)
+	var property image = self.nuevaImagen()
+	const contador = [cero,uno,dos,tres,cuatro,cinco,seis,siete,ocho,nueve]
+	
+	
+	method descontarUnidad(){
+		game.onTick (100, "Descontar1", { => contador.get(9) -1})
+	}
+	
+	
+	method nuevaImagen(){}
+}
+ * 
+ */
 
+object cero {
+	const property image = "nivel1/0.png"
+	const  numero = 0
+	
+	method numero (){ return numero}
+	
+}
+object uno {
+	var property image = "nivel1/1.png"
+	const  numero = 1
+	
+	method numero (){ return numero}
+	
+}
+object dos {
+	var property image = "nivel1/2.png"
+	const  numero = 2
+	
+	method numero (){ return numero}
+	
+}
+object tres {
+	var property image = "nivel1/3.png"
+	const  numero = 3
+	
+	method numero (){ return numero}
+	
+}
+object cuatro{
+	var property image = "nivel1/4.png"
+	const  numero = 4
+	
+	method numero (){ return numero}
+	
+}
+object cinco{
+	var property image = "nivel1/5.png"
+	const  numero = 5
+	
+	method numero (){ return numero}
+	
+}
+object seis{
+	var property image = "nivel1/6.png"
+	const  numero = 6
+	
+	method numero (){ return numero}
+	
+	
+}
+object siete {
+	var property image = "nivel1/7.png"
+	const  numero = 7
+	
+	method numero (){ return numero}
+}
+object ocho {
+	var property image = "nivel1/8.png"
+	const  numero = 8
+	
+	method numero (){ return numero}
+}
+object nueve {
+	var property image = "nivel1/9.png"
+	const  numero = 9
+	
+	method numero (){ return numero}
+}
 /*
  * 
  * method cambiar tiempo

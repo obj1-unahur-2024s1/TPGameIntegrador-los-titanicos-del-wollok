@@ -1,11 +1,13 @@
 import wollok.game.*
 import mapas.*
 import elementos.*
+import contador.*
 object juego{
 	const enemigosNivel1 = [ new Enemigo(position=game.at(9,4)), new Enemigo(position=game.at(9,7)), new Enemigo(position=game.at(3,10))]
 	
 
 	method preparar(){
+	
 		game.title("SnowBros")
 		game.height(15)
 		game.width(18)
@@ -13,6 +15,8 @@ object juego{
 		game.boardGround("fondo.png")
 		game.addVisualCharacter(boss)
 		game.addVisual(nivelSalud)
+		cronometro.mostrar()
+		cronometro.iniciar()
 
 	
 		self.perseguirABoss(enemigosNivel1)

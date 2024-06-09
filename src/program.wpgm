@@ -3,6 +3,7 @@ import wollok.game.*
 import juego.*
 import elementos.*
 import mapas.*
+import contador.*
 
 program snowBros {
 	
