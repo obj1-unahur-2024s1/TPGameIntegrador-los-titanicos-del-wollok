@@ -32,7 +32,7 @@ object juego{
 		
 		listaDeEnemigos.forEach({
 		rival => 
-		var id = rival.identity().toString()
+		const id = rival.identity().toString()
 		game.addVisual(rival)
 		game.whenCollideDo(rival, {p => p.impactoCon(rival, id ) p.resetPosition(rival)})
 		game.onTick(350, "perseguir" + id, {=>
