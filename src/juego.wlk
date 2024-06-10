@@ -2,6 +2,7 @@ import wollok.game.*
 import mapas.*
 import elementos.*
 import contador.*
+import logicaDeNiveles.*
 object juego{
 	const enemigosNivel1 = [ new Enemigo(position=game.at(9,4)), new Enemigo(position=game.at(9,7)), new Enemigo(position=game.at(3,10))]
 	
@@ -18,12 +19,9 @@ object juego{
 		cronometro.mostrar()
 		cronometro.iniciar()
 
-	
 		self.perseguirABoss(enemigosNivel1)
-		self.configurarTeclado()
-		self.dibujarPisoYTecho(mapaNivel1)
-		self.agregarParedes()
-		self.agregarTodosLosBloques(mapaNivel1)
+		nivel1.mapa()
+		//nivel2.prepararNivel()
 		//self.reproducirMusica()
 	
 	}

@@ -38,6 +38,7 @@ object cronometro{
 				boss.restarVidas()
 				nivelSalud.perderVida(boss.vidas())
 				tiempo=30
+				
 			}
 		})
 		//Decrementar desde 30 hasta 0 con onTick
