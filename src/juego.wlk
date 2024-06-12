@@ -90,6 +90,7 @@ object juego{
 			posicion = posicion + 1
 					})	}
 	
+	
 	method configurarTeclado(){
 		var contador = 0
 		
@@ -175,6 +176,7 @@ object juego{
 	}
 	}
 	
+
 	method iniciar(){
 		game.start()}	
 	

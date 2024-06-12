@@ -30,6 +30,4 @@ object nivel2 inherits Niveles(nivel=1){
 	
 	
 	
-	
-	
 }
