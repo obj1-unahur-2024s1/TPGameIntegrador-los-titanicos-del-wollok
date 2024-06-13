@@ -4,10 +4,10 @@ import elementos.*
 import contador.*
 import logicaDeNiveles.*
 object juego{
-	const enemigosNivel1 = [ new Enemigo(position=game.at(9,4)), new Enemigo(position=game.at(9,7)), new Enemigo(position=game.at(3,10))]
+	//const enemigosNivel1 = [ new Enemigo(position=game.at(9,4)), new Enemigo(position=game.at(9,7)), new Enemigo(position=game.at(3,10))]
 	
 
-	method preparar(){
+	/*method preparar(){
 	
 		game.title("SnowBros")
 		game.height(15)
@@ -43,12 +43,12 @@ object juego{
 		var sound = game.sound("sonidos/musica.mp3")
 		sound.shouldLoop(true)
 		game.schedule(500, { sound.play()} )
-		keyboard.enter().onPressDo({sound.stop()})
+		keyboard.space().onPressDo({sound.stop()})
 		keyboard.p().onPressDo({sound.volume(1)})
 		keyboard.o().onPressDo({sound.volume(0.2)})
 	}	
 	
-	
+	*/
 	method agregarPiso(x,y, unNivel){    /// ojo maga hay distintas niveles, los nombres tienen que ser polimoricos, y se cambIA EL NUMERO DEL NIVEL
 		const piso = new PisoMedio(position = game.at(x,y), image ="nivel1/bloqueNivel" + unNivel.toString() + "Medio.png")
 	

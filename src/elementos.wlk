@@ -1,7 +1,7 @@
 import wollok.game.*
 import juego.*
 import mapas.*
-
+import logicaDeNiveles.*
 
 
 class Visual{
@@ -361,6 +361,8 @@ class Enemigo inherits Visual
 			image = "nivel1/enemigo" + vidas + ".png"
 			
 		}
+		
+		
 }
 
 

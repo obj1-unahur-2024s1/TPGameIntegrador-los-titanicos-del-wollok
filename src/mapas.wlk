@@ -8,7 +8,6 @@ class Mapa  {
 	const property lineasDeMuros = []
 	const property nivel
 }
-	const pantallaInicio = new Mapa(lineasDeMuros = [], nivel = 0, fondo = game.boardGround("fondoInicio.jpg"))
 	 		//MAPA DE NIVEL 1
 	const mapaNivel1= new Mapa(lineasDeMuros=[
 		[0,3], [1,3], [2,3], [3,3], [4,3],  [7,3], [8,3], [9,3], [10,3], [13,3],[14,3], [15,3],[16,3],[17,3],

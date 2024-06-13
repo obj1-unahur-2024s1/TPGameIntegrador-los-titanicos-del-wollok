@@ -4,10 +4,11 @@ import juego.*
 import elementos.*
 import mapas.*
 import contador.*
+import logicaDeNiveles.*
 
 program snowBros {
 	
-	
-	juego.preparar()
+	pantallaInicio.pantalla() 
 	juego.iniciar()
+
 }
