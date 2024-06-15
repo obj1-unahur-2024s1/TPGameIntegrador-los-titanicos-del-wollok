@@ -4,11 +4,13 @@ import elementos.*
 import contador.*
 import logicaDeNiveles.*
 object juego{
-	//const enemigosNivel1 = [ new Enemigo(position=game.at(9,4)), new Enemigo(position=game.at(9,7)), new Enemigo(position=game.at(3,10))]
+	const enemigosNivel1 = [ new Enemigo(position=game.at(9,4)), new Enemigo(position=game.at(9,7)), new Enemigo(position=game.at(3,10))]
 	
+	const nivel1 = new Niveles(nivel=1)
+	//const nivel2 = new Niveles(nivel=2)
 
-	/*method preparar(){
-	
+	method preparar(){
+		
 		game.title("SnowBros")
 		game.height(15)
 		game.width(18)
@@ -20,10 +22,11 @@ object juego{
 		cronometro.iniciar()
 
 		self.perseguirABoss(enemigosNivel1)
+		self.sacarFondoInicio()
 		nivel1.mapa()
 		//nivel2.prepararNivel()
 		//self.reproducirMusica()
-	
+		
 	}
 	
 	method perseguirABoss(listaDeEnemigos){
@@ -48,7 +51,18 @@ object juego{
 		keyboard.o().onPressDo({sound.volume(0.2)})
 	}	
 	
-	*/
+	method pantallaInicio(){
+		game.height(15)
+		game.width(18)
+		game.addVisual(fondoInicio)
+		keyboard.enter().onPressDo{self.preparar()}
+		
+	}
+	
+	method sacarFondoInicio(){
+		game.removeVisual(fondoInicio)
+	}
+	
 	method agregarPiso(x,y, unNivel){    /// ojo maga hay distintas niveles, los nombres tienen que ser polimoricos, y se cambIA EL NUMERO DEL NIVEL
 		const piso = new PisoMedio(position = game.at(x,y), image ="nivel1/bloqueNivel" + unNivel.toString() + "Medio.png")
 	

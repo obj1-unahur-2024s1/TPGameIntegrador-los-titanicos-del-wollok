@@ -8,7 +8,7 @@ import logicaDeNiveles.*
 
 program snowBros {
 	
-	pantallaInicio.pantalla() 
+	juego.pantallaInicio() 
 	juego.iniciar()
 
 }

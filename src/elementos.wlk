@@ -132,7 +132,7 @@ object boss {
 		nivelSalud.perderVida(self.vidas())
 		position = game.at(1,1)
 		if(self.vidas() == 0){
-			game.stop()
+			game.clear()
 		}
 		
 	}
@@ -365,7 +365,11 @@ class Enemigo inherits Visual
 		
 }
 
-
+object fondoInicio inherits Visual(
+	position = game.origin(),
+	image="fondoInicio.png"){
+		
+	}
 
 object nivelSalud inherits Visual(
 	position = game.at(1,14),
