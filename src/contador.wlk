@@ -51,6 +51,9 @@ object cronometro{
 		game.removeTickEvent("Temporizador")
 	}
 	
+	method resetear(){
+		tiempo = 30
+	}
 	
 	
 }

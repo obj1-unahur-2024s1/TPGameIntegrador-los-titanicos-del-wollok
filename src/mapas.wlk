@@ -3,8 +3,7 @@ import juego.*
 import elementos.*
 
 class Mapa  {
-	
-	const fondo 
+	 
 	const property lineasDeMuros = []
 	const property nivel
 }
@@ -15,7 +14,7 @@ class Mapa  {
 		[0,9], [1,9], [2,9], [3,9], [4,9], [5,9], [6,9], [7,9], [11,9], [12,9], [13,9],[14,9],[15,9],[16,9],[17,9],
 		[5,12], [6,12], [7,12], [8,12], [9,12], [10,12], [11,12], [12,12],[13,12],
 		[8,13], [9,13], [10,13]
-	], nivel=1,fondo = game.boardGround("fondo.png"))
+	], nivel=1)
 			//MAPA DE NIVEL 2
 			
 	const mapaNivel2= new Mapa(lineasDeMuros=[
@@ -28,4 +27,4 @@ class Mapa  {
 		[5,4], [6,4], [7,4], [8,4], [9,4],
 		[0,3], [1,3], [2,3], [15,3], [16,3], [17,3],
 		[2,2], [3,2], [4,2], [5,2], [6,2], [7,2],[10,2],[11,2],[12,2],[13,2],[14,2],[15,2]
-	], nivel=2,fondo = game.boardGround("fondo1.jpg"))
+	], nivel=2)

@@ -8,7 +8,16 @@ import logicaDeNiveles.*
 
 program snowBros {
 	
-	juego.pantallaInicio() 
-	juego.iniciar()
-
+	juego.prepararPresentacion()
+	keyboard.s().onPressDo {
+		if(!juego.juegoIniciado()){
+			game.removeVisual(imagenInicial)
+			juego.iniciarJuego()
+			juego.juegoIniciado(true) 
+		}
+	}
+	
+	
+	
+	game.start()
 }
