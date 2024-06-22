@@ -1,5 +1,6 @@
 import elementos.*
 import wollok.game.*
+import logicaDeNiveles.*
 
 describe "personajes del juego: bross y enemigos"{
 	
@@ -41,4 +42,5 @@ test "reset la posición de enemigo "{
 	enemigo.resetPosition(boss)
 	assert.that( enemigo.position()==game.at(9,7))
 }
+
 } 

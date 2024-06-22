@@ -3,6 +3,10 @@ import mapas.*
 import elementos.*
 import contador.*
 import logicaDeNiveles.*
+const  nivel1 = new Niveles
+			(nivel=1,mapa=mapaNivel1,image="fondo.png",position=game.center(), enemigos = enemigosNivel1)
+		const  nivel2 = new Niveles
+			(nivel=2,mapa=mapaNivel2,image="fondo.png",position=game.center(), enemigos= enemigosNivel2)
 object juego{
 	
 	
@@ -13,17 +17,16 @@ object juego{
 	
 	var nivelActual = 0
 	
-	const nivel1 = new Niveles
-			(nivel=1,mapa=mapaNivel1,image="fondo.png",position=game.center(), enemigos = enemigosNivel1)
-		const nivel2 = new Niveles
-			(nivel=2,mapa=mapaNivel2,image="fondo.png",position=game.center(), enemigos= enemigosNivel2)
-	const niveles = [nivel1, nivel2]
+	
+	const property niveles = [nivel1, nivel2]
 	/* INICIO DEL JUEGO ACA ABAJO TITANICOS */
+	method juegoIniciado()=juegoIniciado
 	
 	method iniciarJuego(){
 		//self.configurarNiveles()
 		self.prepararVisual()
 	}
+	//method nivelActualSet(unNivel){nivelActual=unNivel}
 	method nivelActual() = niveles.get(nivelActual)
 	
 	method agregarNivel(nuevoNivel) = niveles.add(nuevoNivel)

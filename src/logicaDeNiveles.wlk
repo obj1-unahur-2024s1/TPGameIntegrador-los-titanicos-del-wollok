@@ -10,8 +10,8 @@ const enemigosNivel1 = [new Enemigo(image="nivel1/enemigo3.png",position=game.at
 							]
 							
 const enemigosNivel2 = [new Enemigo(image="nivel1/enemigo3.png",position=game.at(10,4)),
-							new Enemigo(image="nivel1/enemigo3.png",position=game.at(10,7)),
-							new Enemigo(image="nivel1/enemigo3.png",position=game.at(4,10))
+							new Enemigo(image="nivel1/enemigo3.png",position=game.at(14,7)),
+							new Enemigo(image="nivel1/enemigo3.png",position=game.at(7,10)), new Enemigo(image="nivel1/enemigo3.png",position=game.at(8,6))
 							]
 class Niveles inherits Visual {
 	
