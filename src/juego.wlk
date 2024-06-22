@@ -5,19 +5,11 @@ import contador.*
 import logicaDeNiveles.*
 object juego{
 	
-	
-	
+		
 	
 	var property juegoIniciado = false
 	
-	
 	var nivelActual = 0
-	
-	const nivel1 = new Niveles
-			(nivel=1,mapa=mapaNivel1,image="fondo.png",position=game.center(), enemigos = enemigosNivel1)
-		const nivel2 = new Niveles
-			(nivel=2,mapa=mapaNivel2,image="fondo.png",position=game.center(), enemigos= enemigosNivel2)
-	const niveles = [nivel1, nivel2]
 	/* INICIO DEL JUEGO ACA ABAJO TITANICOS */
 	method iniciarJuego(){
 		//self.configurarNiveles()
@@ -26,43 +18,36 @@ object juego{
 	method nivelActual() = niveles.get(nivelActual)
 	
 	method agregarNivel(nuevoNivel) = niveles.add(nuevoNivel)
-	 	
-	 
-	// method configurarNiveles(){
-		
-			
-		//self.agregarNivel(nivel1)
-		//self.agregarNivel(nivel2)
-	//}
-	
-	method prepararPresentacion(){
-		game.title("SnowBros")
-		game.height(15)
-		game.width(18)
-		game.cellSize(50)
-		game.boardGround("fondo.png")
-		game.addVisual(imagenInicial)
-	}
 	
 	method siguienteNivel(){
 		self.finalizar()
 		nivelActual++
-		self.dibujarNivel(self.nivelActual())
 		if (nivelActual < niveles.size()){
+			self.dibujarNivel(self.nivelActual())
 			self.prepararVisual()
+			game.removeTickEvent('comprobarEnemigos')
 		}
 		else{
-			game.stop()
+			self.pantallaGanaste()
+			
 		}
+
 	}
 	
 	method finalizar(){
+		self.nivelActual().sonidoNivel().pause()
 		game.clear()
 		cronometro.resetear()
 		boss.irAlInicio()
 		
 	}
 	
+	method pantallaGanaste(){
+		game.clear()
+		cronometro.resetear()
+		boss.irAlInicio()
+		game.addVisual(imagenGanaste)
+	}
 	
 	method pantallaPerdiste(){
 		self.finalizar()
@@ -79,6 +64,9 @@ object juego{
 		self.dibujarPisoYTecho(nivel)
 		self.agregarParedes()
 		self.agregarTodosLosBloques(nivel)
+		self.nivelActual().sonidoNivel().play()
+		self.nivelActual().sonidoNivel().volume(0.1)
+		
 	}
 
 	method prepararVisual(){
@@ -89,7 +77,15 @@ object juego{
 		game.boardGround("fondo.png")
 		self.dibujarNivel(self.nivelActual())
 		
-		//self.reproducirMusica()
+	}
+	
+	method prepararPresentacion(){
+		game.title("SnowBros")
+		game.height(15)
+		game.width(18)
+		game.cellSize(50)
+		game.boardGround("fondo.png")
+		game.addVisual(imagenInicial)
 	}
 
 	method perseguirABoss(listaDeEnemigos){
@@ -108,15 +104,6 @@ object juego{
 	
 	}
 	
-	method reproducirMusica(){
-		var sound = game.sound("sonidos/musica.mp3")
-		sound.shouldLoop(true)
-		game.schedule(500, { sound.play()} )
-		keyboard.space().onPressDo({sound.stop()})
-		keyboard.p().onPressDo({sound.volume(1)})
-		keyboard.o().onPressDo({sound.volume(0.2)})
-	}	
-	
 	method pantallaInicio(){
 		game.height(15)
 		game.width(18)
@@ -128,7 +115,10 @@ object juego{
 	method sacarFondoInicio(){
 		game.removeVisual(fondoInicio)
 	}
-	
+	method agregarBloqueRelleno(x,y, unNivel){  
+		const bloqueRelleno = new BloqueRelleno(position = game.at(x,y), image ="nivel" + unNivel.toString() + "/bloqueRellenoNivel" + unNivel.toString() + ".png")
+			game.addVisual(bloqueRelleno)
+	}
 	method agregarPiso(x,y, unNivel){    /// ojo maga hay distintas niveles, los nombres tienen que ser polimoricos, y se cambIA EL NUMERO DEL NIVEL
 		const piso = new PisoMedio(position = game.at(x,y), image ="nivel" + unNivel.toString() + "/bloqueNivel" + unNivel.toString() + "Medio.png")
 			game.addVisual(piso)
@@ -148,6 +138,7 @@ object juego{
 
 	method agregarTodosLosBloques(mapaARepresentar){
 		mapaARepresentar.mapa().lineasDeMuros().forEach({x=> self.agregarPiso(x.get(0),x.get(1), mapaARepresentar.nivel())})
+		mapaARepresentar.mapa().bloquesDeRelleno().forEach({x=> self.agregarBloqueRelleno(x.get(0),x.get(1), mapaARepresentar.nivel())})
 		//mapaARepresentar.dibujarPiso()
 	}
 	
@@ -156,7 +147,6 @@ object juego{
 		var posicion = 0
 		(0..18).forEach({e => 
 		self.agregarPiso(posicion, 0, unMapa.nivel())
-			//self.agregarPiso(posicion, 14, unMapa.nivel())
 			posicion = posicion + 1			
 		})}
 
@@ -189,8 +179,9 @@ object juego{
 	game.onTick(5000, 'comprobarEnemigos', {=>
 		if(self.nivelActual().enemigos().size() == 0){
 			self.siguienteNivel()
-			game.removeTickEvent('comprobarEnemigos')
+			
 		}
+		
 	})
 	
 	keyboard.left().onPressDo {

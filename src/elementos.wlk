@@ -3,6 +3,17 @@ import juego.*
 import mapas.*
 import logicaDeNiveles.*
 
+const enemigosNivel1 = [new Enemigo(image="nivel1/enemigo3.png",position=game.at(9,4)),
+							new Enemigo(image="nivel1/enemigo3.png",position=game.at(9,7)),
+							new Enemigo(image="nivel1/enemigo3.png",position=game.at(3,10))
+							]
+							
+const enemigosNivel2 = [new Enemigo(image="nivel1/enemigo3.png",position=game.at(10,4)),
+							new Enemigo(image="nivel1/enemigo3.png",position=game.at(10,7)),
+							new Enemigo(image="nivel1/enemigo3.png",position=game.at(4,10)),
+							new Enemigo(image="nivel1/enemigo3.png",position=game.at(7,13)),
+							new Enemigo(image="nivel1/enemigo3.png",position=game.at(9,13))
+							]
 
 class Visual{
 	var property image
@@ -32,6 +43,10 @@ class ColumnaBaja inherits Bloques{
 	
 }
 
+class BloqueRelleno inherits PisoMedio{
+	
+}
+
 class TipoElemento{
 	
 }
@@ -45,6 +60,7 @@ object boss {
 	method irAlInicio(){
 		position = game.at(2,1)
 	}
+	
 	
 	method irHaciaDerecha(mapaARepresentar){
 	var posicionx = self.position().x()
@@ -138,6 +154,7 @@ object boss {
 		if(self.vidas() == 0){
 			juego.pantallaPerdiste()
 		}
+
 		
 	}
 	
@@ -193,8 +210,8 @@ class Proyectil inherits Visual(
 
 
 class Enemigo inherits Visual
-		(image="nivel1/enemigo3.png"){
-	
+		(image="nivel/enemigo3.png"){
+		
 		var property vidas = 3
 		var property estaVivo = true
 		
@@ -404,3 +421,7 @@ object imagenPerdiste{
 
 }
 
+object imagenGanaste{
+	var property position = game.at(0,0)
+	var property image = "Win/WinImage.png"
+}

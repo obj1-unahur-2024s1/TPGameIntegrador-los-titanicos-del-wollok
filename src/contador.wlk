@@ -1,5 +1,6 @@
 import wollok.game.*
 import elementos.*
+import juego.*
 
 class Digito {
   var property position
@@ -35,10 +36,14 @@ object cronometro{
 			unidad.valor(un)
 			decena.valor(de)
 			if (tiempo == 0){
+				if (boss.vidas() > 1){
 				boss.restarVidas()
 				nivelSalud.perderVida(boss.vidas())
-				tiempo=30
-				
+				tiempo=300000
+				}
+				else{
+					juego.pantallaPerdiste()
+				}
 			}
 		})
 		//Decrementar desde 30 hasta 0 con onTick

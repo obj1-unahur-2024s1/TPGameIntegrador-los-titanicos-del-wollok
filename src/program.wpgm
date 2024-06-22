@@ -9,7 +9,7 @@ import logicaDeNiveles.*
 program snowBros {
 	
 	juego.prepararPresentacion()
-	keyboard.s().onPressDo {
+	keyboard.enter().onPressDo {
 		if(!juego.juegoIniciado()){
 			game.removeVisual(imagenInicial)
 			juego.iniciarJuego()
