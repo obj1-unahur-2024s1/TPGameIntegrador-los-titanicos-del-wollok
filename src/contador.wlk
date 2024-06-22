@@ -39,7 +39,7 @@ object cronometro{
 				if (boss.vidas() > 1){
 				boss.restarVidas()
 				nivelSalud.perderVida(boss.vidas())
-				tiempo=300000
+				tiempo=30
 				}
 				else{
 					juego.pantallaPerdiste()
