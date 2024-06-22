@@ -1,0 +1,45 @@
+import juego.*
+import logicaDeNiveles.*
+import wollok.game.*
+import mapas.*
+import elementos.*
+describe "probando un poco el juego"{
+	
+	method initialize() {
+		game.clear()
+	}
+	
+	test "el juego no esta iniciado, sin apretar la s" {
+		
+	assert.notThat(juego.juegoIniciado())
+
+}
+ 
+test "hay 2 niveles en el juego posibles para ser ejecutados por el momento"{
+	assert.equals(2, juego.niveles().size())
+}
+test   "Config varias de Nivel 1"{
+  juego.dibujarNivel(nivel1)
+  
+  assert.that(nivel1.nivel()==1)
+  assert.that(nivel1.mapa()==mapaNivel1)
+  assert.that(nivel1.enemigos()==enemigosNivel1)
+	//assert.
+}
+test   "Config varias de Nivel 2"{
+ 
+ 
+  juego.dibujarNivel(nivel2)
+  
+  assert.that(nivel2.nivel()==2)
+  assert.that(nivel2.mapa()==mapaNivel2)
+  assert.that(nivel2.enemigos()==enemigosNivel2)
+	//assert.
+}
+test "Al finaliza el nivel, boss vuelve a comenzar desde su posicion inicial"{
+	juego.finalizar()
+	
+	assert.that(boss.position() == game.at(2,1))
+	
+}
+}
