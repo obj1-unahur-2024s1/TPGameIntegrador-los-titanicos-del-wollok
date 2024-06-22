@@ -19,6 +19,7 @@ object juego{
 			(nivel=2,mapa=mapaNivel2,image="fondo.png",position=game.center(), enemigos= enemigosNivel2)
 	const niveles = [nivel1, nivel2]
 	/* INICIO DEL JUEGO ACA ABAJO TITANICOS */
+	
 	method iniciarJuego(){
 		//self.configurarNiveles()
 		self.prepararVisual()
@@ -53,6 +54,7 @@ object juego{
 		}
 		else{
 			game.stop()
+			self.iniciarJuego() //si rompe sacar
 		}
 	}
 	

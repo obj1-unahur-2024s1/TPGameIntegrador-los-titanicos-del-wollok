@@ -1,0 +1,44 @@
+import elementos.*
+import wollok.game.*
+
+describe "personajes del juego: bross y enemigos"{
+	
+	method initialize() {
+		game.clear()
+	}
+	
+	test "la posicion inicial del personaje se ejecuta siempre en el mismo lugar" {
+		boss.irAlInicio()
+	assert.that( boss.position()== game.at(2,1))
+
+}
+test "boss saltando"{
+	boss.saltar()
+	
+	assert.that( boss.position()== game.at(2,2))
+}
+test "boss puede bajar"{
+	boss.bajar()
+	
+	assert.that(boss.position()==game.at(2,1))
+}
+test "puede perder vidas boss"{
+	boss.restarVidas()
+	assert.equals(2, boss.vidas())
+}
+test "incialmente el personaje no está en el tablero" {
+		assert.that(!game.hasVisual(boss))		
+	}
+test " cuando impacta con un enemigo, boss pierde una vida"{ 
+	const enemigo= new Enemigo(position=game.at(9,7))
+	const id=enemigo.identity().toString()
+	boss.impactoCon(enemigo, id)    
+	
+	assert.equals(2,boss.vidas() )
+}
+test "reset la posición de enemigo "{
+	const enemigo= new Enemigo(position=game.at(9,7))
+	enemigo.resetPosition(boss)
+	assert.that( enemigo.position()==game.at(9,7))
+}
+} 
