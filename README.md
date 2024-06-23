@@ -2,9 +2,8 @@
 
 ## Equipo de desarrollo
 
-## Equipo de desarrollo
-
 - Albici, Belen
+- Chavez, Facundo
 - Di Biase, Leonardo
 - Fisz, Gustavo
 - Gutierrez, Magali
@@ -14,8 +13,10 @@
 ## Pantalla de Inicio
 ![inicio](./assets/imagenFondo.jpg)
 
-## Partida De Ejemplo
+## Partida Ejemplo Nivel 1
 ![juego](./assets/screenshots/juegoEjemplo1.jpeg)
+
+## Partida Ejemplo Nivel 2
 ![juego](./assets/screenshots/juegoEjemplo2.jpeg)
 
 ## Partida ganada
