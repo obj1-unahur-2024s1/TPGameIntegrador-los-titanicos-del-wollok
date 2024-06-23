@@ -1,7 +1,6 @@
 import wollok.game.*
 import mapas.*
 import elementos.*
-import contador.*
 import logicaDeNiveles.*
 
 object juego{

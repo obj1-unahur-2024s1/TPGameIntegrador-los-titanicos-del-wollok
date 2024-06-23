@@ -3,17 +3,10 @@ import juego.*
 import mapas.*
 import logicaDeNiveles.*
 
-const enemigosNivel1 = [new Enemigo(image="nivel1/enemigo3.png",position=game.at(9,4)),
-							new Enemigo(image="nivel1/enemigo3.png",position=game.at(9,7)),
-							new Enemigo(image="nivel1/enemigo3.png",position=game.at(3,10))
-							]
+const enemigosNivel1 =  (0..2).map({n => new Enemigo(image="nivel1/enemigo3.png" )})
 							
-const enemigosNivel2 = [new Enemigo(image="nivel1/enemigo3.png",position=game.at(10,4)),
-							new Enemigo(image="nivel1/enemigo3.png",position=game.at(10,7)),
-							new Enemigo(image="nivel1/enemigo3.png",position=game.at(4,10)),
-							new Enemigo(image="nivel1/enemigo3.png",position=game.at(7,13)),
-							new Enemigo(image="nivel1/enemigo3.png",position=game.at(9,13))
-							]
+							
+const enemigosNivel2 = (0..4).map({n => new Enemigo(image="nivel1/enemigo3.png" )})
 
 
 class Visual{
@@ -160,16 +153,9 @@ object boss {
 		position = game.at(1,1)
 		if(self.vidas() == 0){
 			juego.pantallaPerdiste()
-		}
-
-		
-	}
+		}		
+	}	
 	
-	
-	
-	method resetPosition(rival){
-		
-	}
 }
 
 
@@ -197,32 +183,25 @@ class Proyectil inherits Visual(
 			rival.perderVidas()
 			rival.morir(id)
 			rival.cambiarImagen()
-			game.removeVisual(self)
-			
-			
+			game.removeVisual(self)		
 	}
-	
-	method resetPosition(rival){
-		
-	}
-	
-	
 	
 	method removerSiEsta(){
 		if(game.hasVisual(self)){
 			game.removeVisual(self)
 		}
 	}
-
 }
 
 
 
 class Enemigo inherits Visual
-		(image="nivel/enemigo3.png"){
+		(position=game.at(5.randomUpTo(game.width()-2).truncate(0),
+                 5.randomUpTo(game.height()-2).truncate(0))){
 		
 		var property vidas = 3
 		var property estaVivo = true
+
 		
 		method enemigosPersiguiendo(lista){
 			lista.forEach({
@@ -234,15 +213,11 @@ class Enemigo inherits Visual
 			rival.perseguir()
 	})
 	})
-	
 	}	
 	
-		
-		
-		
-		method impactoCon(rival, id){
+	   method impactoCon(rival, id){
 			
-		}
+	   }
 			
 		method resetPosition(rival){
 			
@@ -433,3 +408,68 @@ object imagenGanaste{
 	var property position = game.at(0,0)
 	var property image = "Win/WinImage.png"
 }
+
+
+
+class Digito {
+  var property position
+  var property valor = 0
+  method image() = "nivel1/" + valor.toString() + ".jpg" 
+
+
+}
+
+object cronometro{
+	var tiempo = 30
+	var unidad = new Digito(position= game.at(15,14))
+  	var decena = new Digito(position= game.at(14,14))
+  	
+  	method mostrar(){
+  		game.addVisual(decena)
+		game.addVisual(unidad)
+  		
+  	}
+  	
+	method reset(){
+		self.detener()	
+		tiempo = 30 
+		//Detener y vuelva a 30
+	}
+	
+	
+	method iniciar(){
+		game.onTick(1000,"Temporizador",{=>
+			tiempo= tiempo - 1
+			var un = tiempo%10
+			var de = (tiempo/10).truncate(0)
+			unidad.valor(un)
+			decena.valor(de)
+			if (tiempo == 0){
+				if (boss.vidas() > 1){
+				boss.restarVidas()
+				nivelSalud.perderVida(boss.vidas())
+				tiempo=30
+				}
+				else{
+					juego.pantallaPerdiste()
+				}
+			}
+		})
+		//Decrementar desde 30 hasta 0 con onTick
+		
+		//Logica para obtener el tiempo de la unidad y la decena
+	}
+	
+	method detener (){
+		//Remover el onTick
+		game.removeTickEvent("Temporizador")
+	}
+	
+	method resetear(){
+		tiempo = 30
+	}
+	
+	
+}
+
+

@@ -1,7 +1,6 @@
 import juego.*
 import elementos.*
 import mapas.*
-import contador.*
 import wollok.game.*
 
 const nivel1 = new Niveles

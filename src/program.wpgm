@@ -3,7 +3,6 @@ import wollok.game.*
 import juego.*
 import elementos.*
 import mapas.*
-import contador.*
 import logicaDeNiveles.*
 
 program snowBros {
