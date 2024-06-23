@@ -6,7 +6,7 @@ import logicaDeNiveles.*
 const enemigosNivel1 =  (0..2).map({n => new Enemigo(image="nivel1/enemigo3.png" )})
 							
 							
-const enemigosNivel2 = (0..4).map({n => new Enemigo(image="nivel1/enemigo3.png" )})
+const enemigosNivel2 = (0..4).map({n => new Enemigo(image="nivel2/enemigo3.png" )})
 
 
 class Visual{
@@ -156,6 +156,10 @@ object boss {
 		}		
 	}	
 	
+	method resetPosition(rival){
+		
+	}
+	
 }
 
 
@@ -184,6 +188,10 @@ class Proyectil inherits Visual(
 			rival.morir(id)
 			rival.cambiarImagen()
 			game.removeVisual(self)		
+	}
+	
+	method resetPosition(rival){
+		
 	}
 	
 	method removerSiEsta(){
