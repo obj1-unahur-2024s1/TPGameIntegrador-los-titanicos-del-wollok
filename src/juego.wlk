@@ -24,6 +24,8 @@ object juego{
 	//method nivelActualSet(unNivel){nivelActual=unNivel}
 	method nivelActual() = niveles.get(nivelActual)
 	
+	method nivelActualGetter()= nivelActual
+	
 	method agregarNivel(nuevoNivel) = niveles.add(nuevoNivel)
 	
 	method siguienteNivel(){

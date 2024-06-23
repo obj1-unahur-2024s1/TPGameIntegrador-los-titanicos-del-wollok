@@ -376,8 +376,8 @@ class Enemigo inherits Visual
 		
 		method cambiarImagen(){
 			
-			
-			image = "nivel1/enemigo" + vidas + ".png"
+			image = "nivel" + (juego.nivelActualGetter() +1) + "/enemigo"+ vidas + ".png"
+			//image = "nivel1/enemigo" + vidas + ".png"
 			
 		}
 		
