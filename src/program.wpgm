@@ -8,16 +8,6 @@ import logicaDeNiveles.*
 
 program snowBros {
 	
-	juego.prepararPresentacion()
-	keyboard.enter().onPressDo {
-		if(!juego.juegoIniciado()){
-			game.removeVisual(imagenInicial)
-			juego.iniciarJuego()
-			juego.juegoIniciado(true) 
-		}
-	}
-	
-	
-	
+	juego.iniciarMenu()
 	game.start()
 }

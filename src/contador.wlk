@@ -5,7 +5,7 @@ import juego.*
 class Digito {
   var property position
   var property valor = 0
-  method image() = "nivel1/" + valor.toString() + ".png" 
+  method image() = "nivel1/" + valor.toString() + ".jpg" 
 
 
 }

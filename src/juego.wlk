@@ -9,7 +9,7 @@ object juego{
 		
 	
 	var property juegoIniciado = false
-	
+
 	var nivelActual = 0
 
 	
@@ -60,8 +60,25 @@ object juego{
 	method pantallaPerdiste(){
 		self.finalizar()
 		game.addVisual(imagenPerdiste)
+		self.juegoIniciado(false)
 	}
 	
+	
+	
+	method iniciarMenu(){
+	
+		self.prepararPresentacion()
+		keyboard.enter().onPressDo {
+			if(!self.juegoIniciado()){
+				game.removeVisual(imagenInicial)
+				self.iniciarJuego()
+				self.juegoIniciado(true)
+			}
+		}
+	}
+	
+
+
 	method dibujarNivel(nivel){
 		game.addVisualCharacter(boss)
 		game.addVisual(nivelSalud)

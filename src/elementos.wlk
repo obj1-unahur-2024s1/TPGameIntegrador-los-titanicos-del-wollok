@@ -15,6 +15,7 @@ const enemigosNivel2 = [new Enemigo(image="nivel1/enemigo3.png",position=game.at
 							new Enemigo(image="nivel1/enemigo3.png",position=game.at(9,13))
 							]
 
+
 class Visual{
 	var property image
 	var property position
@@ -52,7 +53,7 @@ class TipoElemento{
 }
 
 object boss {
-	var property image = "nivel1/personaje.png"
+	var property image = "nivel1/bossDerecha.png"
 	var property position = game.at(2,1)
 	
 	var vidas = 3
@@ -60,16 +61,21 @@ object boss {
 	method irAlInicio(){
 		position = game.at(2,1)
 	}
-	
-	
+	method cambiarIimagenDerecha(){
+	  	 image="nivel1/bossDerecha.png"
+	 }
+	method cambiarImagenIzquierda(){
+		 image="nivel1/bossIzquierda.png"
+	} 
 	method irHaciaDerecha(mapaARepresentar){
-	var posicionx = self.position().x()
-	var posiciony = self.position().y()
-		//verificar si puede moverse
-		if(mapaARepresentar.mapa().lineasDeMuros().any({e => e.get(1)==posiciony and e.get(0) == posicionx}) or (posicionx == 17)){
-			position = game.at(posicionx - 1, posiciony )	 
+		var posicionx = self.position().x()
+		var posiciony = self.position().y()
+			//verificar si puede moverse
+			if(mapaARepresentar.mapa().lineasDeMuros().any({e => e.get(1)==posiciony and e.get(0) == posicionx}) or (posicionx == 17)){
+				position = game.at(posicionx - 1, posiciony )	 
+			}
+		self.cambiarIimagenDerecha()
 		}
-	}
 
 	method irHaciaIzquierda(mapaARepresentar){
 		var posicionx = self.position().x()
@@ -77,6 +83,7 @@ object boss {
 		if(mapaARepresentar.mapa().lineasDeMuros().any({e => e.get(1)==posiciony and e.get(0) == posicionx}) or (posicionx == 0)){
 			position = game.at(posicionx + 1, posiciony )	
 		}
+		self.cambiarImagenIzquierda()
 	}
 	
 	
@@ -158,6 +165,8 @@ object boss {
 		
 	}
 	
+	
+	
 	method resetPosition(rival){
 		
 	}
@@ -214,7 +223,6 @@ class Enemigo inherits Visual
 		
 		var property vidas = 3
 		var property estaVivo = true
-		
 		
 		method enemigosPersiguiendo(lista){
 			lista.forEach({
@@ -406,7 +414,7 @@ object nivelSalud inherits Visual(
 	method perderVida(cant){
 		image = "nivel1/" + cant + "vidas.png"
 	}
-	}
+}
 	
 	
 object imagenInicial{
