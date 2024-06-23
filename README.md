@@ -2,26 +2,27 @@
 
 ## Equipo de desarrollo
 
-- Albici,Belen
--Chavez, Facundo
--Di Biase, Leonardo
--Fisz, Gustavo 
--Gutierrez, Magali
+## Equipo de desarrollo
+
+- Albici, Belen
+- Di Biase, Leonardo
+- Fisz, Gustavo
+- Gutierrez, Magali
 
 ## Capturas 
 
 ## Pantalla de Inicio
-![inicio](imagenFondo.jpg)
+![inicio](./assets/imagenFondo.jpg)
 
 ## Partida De Ejemplo
-![juego](screenshots/juegoEjemplo1.jpeg)
-![juego](screenshots/juegoEjemplo2.jpeg)
+![juego](./assets/screenshots/juegoEjemplo1.jpeg)
+![juego](./assets/screenshots/juegoEjemplo2.jpeg)
 
 ## Partida ganada
-![ganada](Win/WinImage.png)
+![ganada](./assets/Win/WinImage.png)
 
 ## Game Over
-![over](gameOver/gameOver4.png)
+![over](./assets/gameOver/gameOver4.png)
 
 ## Reglas de Juego / Instrucciones
 Eliminar a todos los enemigos de ambos mapas para rescatar a la princesa
