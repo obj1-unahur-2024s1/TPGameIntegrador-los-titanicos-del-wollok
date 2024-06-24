@@ -1,0 +1,33 @@
+import juego.*
+import elementos.*
+import mapas.*
+import wollok.game.*
+import logicaDeNiveles.*
+
+	describe "test sobre mapas"{
+		
+		test 'boss no se puede mover hacia la derecha en mapa 1'{
+			
+			boss.position(game.at(4,3))
+			boss.irHaciaDerecha(nivel1)
+			
+			assert.equals(3, boss.position().x())
+		}
+		
+		
+		test ' boss esta sobre piso'{
+			
+			boss.position(game.at(1,1))
+			
+			assert.that(boss.estaSobrePiso())
+		}
+		
+		test "la siguiente posicion de boss es un borde"{
+			boss.position(game.at(17+1,1))
+			
+			assert.that(boss.hayUnBorde())
+		}
+		
+		
+	}
+
