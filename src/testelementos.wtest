@@ -31,14 +31,14 @@ test "incialmente el personaje no está en el tablero" {
 		assert.that(!game.hasVisual(boss))		
 	}
 test " cuando impacta con un enemigo, boss pierde una vida"{ 
-	const enemigo= new Enemigo(position=game.at(9,7))
+	const enemigo= new Enemigo(position=game.at(9,7), image='')
 	const id=enemigo.identity().toString()
 	boss.impactoCon(enemigo, id)    
 	
 	assert.equals(2,boss.vidas() )
 }
 test "reset la posición de enemigo "{
-	const enemigo= new Enemigo(position=game.at(9,7))
+	const enemigo= new Enemigo(position=game.at(9,7), image='')
 	enemigo.resetPosition(boss)
 	assert.that( enemigo.position()==game.at(9,7))
 }
