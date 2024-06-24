@@ -80,9 +80,7 @@ object boss {
 	method irHaciaAbajo(){
 		var posicionx = self.position().x()
 	    var posiciony = self.position().y()
-		//if(mapaNivel1.lineasDeMuros().any({e => e.get(1)==posiciony  and e.get(0) == posicionx}) or self.estaSobrePiso()){
 			position = game.at(posicionx , posiciony + 1 )	
-		//}
 	}
 	
 	
@@ -234,22 +232,14 @@ class Enemigo inherits Visual
 			
 		var posx = self.position().x()
 		var posy = self.position().y()
-		
-		
-		
-		
-		
-	
-		
+			
+
 		if(boss.position().x() > self.position().x() and !self.hayBloqueHaciaDerecha(mapaARepresentar))
 		{position = game.at(posx + 1, posy) self.caer() } else self.verHaciaAbajo(mapaARepresentar)
 			
 		}
 		
-		
 		method caer(){
-			
-			
 			if(!self.hayBloqueHaciaAbajo(juego.nivelActual())){
 			game.onTick(300, 'bajar3', {=>
 				self.bajar()
@@ -380,41 +370,27 @@ object fondoInicio inherits Visual(
 	image="fondoInicio.png"){	
 }
 
-
-
-
-/*
- * Estaba probando esto para ver si podia tener el cambio sin que sean 2 objetos
-object fondoNivel  {
-	var property position = game.origin()
-	var image
-	method image(n){
-		image = "nivel1/fondo" + (juego.nivelActualGetter() +1) + ".jpg"
-	}
-}
-*/
 object fondoNivel1 inherits Visual (
 	position = game.origin(),
 	image= "nivel1/fondo1.jpg"
-){
+	){
 }
 
 object fondoNivel2 inherits Visual (
 	position = game.origin(),
 	image= "nivel2/fondo2.jpg"
-){	
+	){	
 }
 
 object nivelSalud inherits Visual(
 	position = game.at(1,14),
 	image="nivel1/3Vidas.jpg"
-){
+	){
 	method perderVida(cant){
 		image = "nivel1/" + cant + "vidas.jpg"
 	}
 }
-	
-	
+		
 object imagenInicial{
 	var property position = game.at(0,0)
 	var property image = 'imagenFondo.jpg'

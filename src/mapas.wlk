@@ -8,7 +8,7 @@ class Mapa  {
 	const property bloquesDeRelleno = []
 	const property nivel
 }
-	//MAPA DE NIVEL 1
+			//MAPA DE NIVEL 1
 	const mapaNivel1= new Mapa(lineasDeMuros=[
 		[0,3], [1,3], [2,3], [3,3], [4,3],  [7,3], [8,3], [9,3], [10,3], [13,3],[14,3], [15,3],[16,3],[17,3],
 		[4,6], [5,6], [6,6], [7,6], [8,6], [9,6], [10,6], [11,6], [12,6],[13,6],

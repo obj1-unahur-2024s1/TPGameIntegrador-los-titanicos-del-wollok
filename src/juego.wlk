@@ -5,23 +5,15 @@ import logicaDeNiveles.*
 
 object juego{
 	
-		
-	
 	var property juegoIniciado = false
-
 	var nivelActual = 0
 
-	
-	
-	
-	/* INICIO DEL JUEGO ACA ABAJO TITANICOS */
 	method juegoIniciado()=juegoIniciado
 	
 	method iniciarJuego(){
-		//self.configurarNiveles()
 		self.prepararVisual()
 	}
-	//method nivelActualSet(unNivel){nivelActual=unNivel}
+
 	method nivelActual() = niveles.get(nivelActual)
 	
 	method nivelActualGetter()= nivelActual
@@ -32,17 +24,11 @@ object juego{
 		self.finalizar()
 		nivelActual++
 		if (nivelActual < niveles.size()){
-			
 			self.prepararVisual()
-			
 		}
 		else{
- 			
 			self.pantallaGanaste()
-			
-			
 		}
-
 	}
 	
 	method finalizar(){
@@ -50,7 +36,6 @@ object juego{
 		game.clear()
 		cronometro.resetear()
 		boss.irAlInicio()
-		
 	}
 	
 	method pantallaGanaste(){
@@ -70,8 +55,6 @@ object juego{
 		self.juegoIniciado(false)
 	}
 	
-	
-	
 	method iniciarMenu(){
 	
 		self.prepararPresentacion()
@@ -83,8 +66,6 @@ object juego{
 			}
 		}
 	}
-	
-
 
 	method dibujarNivel(nivel){
 		game.addVisual(nivel.image())
@@ -98,8 +79,7 @@ object juego{
 		self.agregarParedes()
 		self.agregarTodosLosBloques(nivel)
 		self.nivelActual().sonidoNivel().play()
-		self.nivelActual().sonidoNivel().volume(0.1)
-		
+		self.nivelActual().sonidoNivel().volume(0.3)
 	}
 
 	method prepararVisual(){
@@ -109,7 +89,6 @@ object juego{
 		game.cellSize(50)
 		game.boardGround("fondo.png")
 		self.dibujarNivel(self.nivelActual())
-		
 	}
 	
 	method prepararPresentacion(){
@@ -122,19 +101,15 @@ object juego{
 	}
 
 	method perseguirABoss(listaDeEnemigos){
-		
 		listaDeEnemigos.forEach({
 		rival => 
 		const id = rival.identity().toString()
 		game.addVisual(rival)
 		game.whenCollideDo(rival, {p => p.impactoCon(rival, id ) p.resetPosition(rival)})
 		game.onTick(600, "perseguir" + id, {=>
-			rival.perseguir(self.nivelActual())
-			
-			
-	})
-	})
-	
+			rival.perseguir(self.nivelActual())	
+			})
+		})
 	}
 	
 	method pantallaInicio(){
@@ -142,7 +117,6 @@ object juego{
 		game.width(18)
 		game.addVisual(fondoInicio)
 		keyboard.enter().onPressDo{self.prepararVisual()}
-		
 	}
 	
 	method sacarFondoInicio(){
@@ -172,7 +146,6 @@ object juego{
 	method agregarTodosLosBloques(mapaARepresentar){
 		mapaARepresentar.mapa().lineasDeMuros().forEach({x=> self.agregarPiso(x.get(0),x.get(1), mapaARepresentar.nivel())})
 		mapaARepresentar.mapa().bloquesDeRelleno().forEach({x=> self.agregarBloqueRelleno(x.get(0),x.get(1), mapaARepresentar.nivel())})
-		//mapaARepresentar.dibujarPiso()
 	}
 	
 	method dibujarPisoYTecho(unMapa){
@@ -181,22 +154,20 @@ object juego{
 		(0..18).forEach({e => 
 		self.agregarPiso(posicion, 0, unMapa.nivel())
 			posicion = posicion + 1			
-		})}
+		})
+	}
 
-	
 	method agregarParedes(){
-		
 	var posicion = 1
 	(0..14).forEach({e => 
 			self.agregarColumnaBaja(0, posicion)
 			self.agregarColumnaBajaIzq(17, posicion)
 			posicion = posicion + 1
-					})	}
-	
+					})	
+	}
 	
 	method configurarTeclado(){
 		var contador = 0
-		
 		keyboard.right().onPressDo {
 		boss.irHaciaDerecha(self.nivelActual())
 		if(!boss.hayBloqueAbajo(self.nivelActual())){
@@ -212,9 +183,7 @@ object juego{
 	game.onTick(5000, 'comprobarEnemigos', {=>
 		if(self.nivelActual().enemigos().size() == 0){
 			self.siguienteNivel()
-			
 		}
-		
 	})
 	
 	keyboard.left().onPressDo {
