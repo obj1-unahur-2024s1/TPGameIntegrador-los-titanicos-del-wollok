@@ -22,8 +22,12 @@
 ## Partida ganada
 ![ganada](./assets/Win/WinImage.png)
 
+## Pantalla Final
+![ganada](./assets/Win/integrantes.jpeg)
+
 ## Game Over
 ![over](./assets/gameOver/gameOver4.png)
+
 
 ## Reglas de Juego / Instrucciones
 Eliminar a todos los enemigos de ambos mapas para rescatar a la princesa
