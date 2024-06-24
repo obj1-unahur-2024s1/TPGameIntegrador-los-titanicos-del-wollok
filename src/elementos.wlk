@@ -6,7 +6,7 @@ import logicaDeNiveles.*
 const enemigosNivel1 =  (0..2).map({n => new Enemigo(image="nivel1/enemigo3.png" )})
 							
 							
-const enemigosNivel2 = (0..4).map({n => new Enemigo(image="nivel2/enemigo3.png" )})
+const enemigosNivel2 = (0..3).map({n => new Enemigo(image="nivel2/enemigo3.png" )})
 
 
 class Visual{
@@ -33,17 +33,13 @@ class PisoMedio inherits Bloques{
 class Columna inherits Bloques {
 	
 }
-class ColumnaBaja inherits Bloques{
-	
-}
+
 
 class BloqueRelleno inherits PisoMedio{
 	
 }
 
-class TipoElemento{
-	
-}
+
 
 object boss {
 	var property image = "nivel1/bossDerecha.png"
@@ -217,7 +213,7 @@ class Enemigo inherits Visual
 		var id = rival.identity().toString()
 		game.addVisual(rival)
 		game.whenCollideDo(rival, {p => p.impactoCon(rival, id ) p.resetPosition(rival)})
-		game.onTick(350, "perseguir" + id, {=>
+		game.onTick(600, "perseguir" + id, {=>
 			rival.perseguir()
 	})
 	})
@@ -255,7 +251,7 @@ class Enemigo inherits Visual
 			
 			
 			if(!self.hayBloqueHaciaAbajo(juego.nivelActual())){
-			game.onTick(150, 'bajar3', {=>
+			game.onTick(300, 'bajar3', {=>
 				self.bajar()
 				if(self.enemigoEstaSobrePiso()){
 					game.removeTickEvent('bajar3')

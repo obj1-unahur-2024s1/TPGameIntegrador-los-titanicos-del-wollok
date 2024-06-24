@@ -13,7 +13,7 @@ object juego{
 
 	
 	
-	const property niveles = [nivel1, nivel2]
+	
 	/* INICIO DEL JUEGO ACA ABAJO TITANICOS */
 	method juegoIniciado()=juegoIniciado
 	
@@ -32,13 +32,15 @@ object juego{
 		self.finalizar()
 		nivelActual++
 		if (nivelActual < niveles.size()){
-			self.dibujarNivel(self.nivelActual())
+			
 			self.prepararVisual()
-			game.removeTickEvent('comprobarEnemigos')
+			
 		}
 		else{
-
+ 			
 			self.pantallaGanaste()
+			
+			
 		}
 
 	}
@@ -85,6 +87,7 @@ object juego{
 
 
 	method dibujarNivel(nivel){
+		game.addVisual(nivel.image())
 		game.addVisualCharacter(boss)
 		game.addVisual(nivelSalud)
 		cronometro.mostrar()
@@ -125,7 +128,7 @@ object juego{
 		const id = rival.identity().toString()
 		game.addVisual(rival)
 		game.whenCollideDo(rival, {p => p.impactoCon(rival, id ) p.resetPosition(rival)})
-		game.onTick(350, "perseguir" + id, {=>
+		game.onTick(600, "perseguir" + id, {=>
 			rival.perseguir(self.nivelActual())
 			
 			
@@ -228,13 +231,13 @@ object juego{
 	
 	keyboard.up().onPressDo {
 
-		game.onTick(50, 'movimiento', {=>
+		game.onTick(150, 'movimiento', {=>
 			boss.saltar()
 			contador = contador + 1
 			if(contador == 3){
 				game.removeTickEvent('movimiento')
 				contador = 0
-				game.onTick(100, 'movimientoNuevo', {=>
+				game.onTick(200, 'movimientoNuevo', {=>
 					if(boss.estaSobrePiso()){
 						game.removeTickEvent('movimientoNuevo')
 						contador = 0
@@ -256,7 +259,7 @@ object juego{
 			proyectil.irHaciaIzquierda()
 			game.addVisual(proyectil)
 			var id = proyectil.identity().toString()
-		game.onTick(50, "movimiento" + id, {=> 
+		game.onTick(150, "movimiento" + id, {=> 
 			proyectil.irHaciaIzquierda()
 			if(proyectil.position().x() == -1){
 				proyectil.removerSiEsta()
@@ -270,7 +273,7 @@ object juego{
 			proyectil.irHaciaDerecha()
 			game.addVisual(proyectil)
 			var id = proyectil.identity().toString()
-			game.onTick(50, "movimiento" + id , {=> 
+			game.onTick(150, "movimiento" + id , {=> 
 			
 			proyectil.irHaciaDerecha()
 			
