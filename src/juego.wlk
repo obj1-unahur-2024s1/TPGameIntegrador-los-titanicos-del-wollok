@@ -56,6 +56,10 @@ object juego{
 		cronometro.resetear()
 		boss.irAlInicio()
 		game.addVisual(imagenGanaste)
+		game.schedule(5000, {=>
+			game.clear()
+			game.addVisual(imagenFinal)
+		})
 	}
 	
 	method pantallaPerdiste(){

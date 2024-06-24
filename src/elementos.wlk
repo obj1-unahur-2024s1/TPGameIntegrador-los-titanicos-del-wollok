@@ -392,10 +392,10 @@ object fondoInicio inherits Visual(
 
 object nivelSalud inherits Visual(
 	position = game.at(1,14),
-	image="nivel1/3Vidas.png"
+	image="nivel1/3Vidas.jpg"
 ){
 	method perderVida(cant){
-		image = "nivel1/" + cant + "vidas.png"
+		image = "nivel1/" + cant + "vidas.jpg"
 	}
 }
 	
@@ -417,6 +417,10 @@ object imagenGanaste{
 	var property image = "Win/WinImage.png"
 }
 
+object imagenFinal{
+	var property position = game.at(0,0)
+	var property image = "end.png"
+}
 
 
 class Digito {
