@@ -9,7 +9,7 @@ describe "probando un poco el juego"{
 		game.clear()
 	}
 	
-	test "el juego no esta iniciado, sin apretar la s" {
+	test "el juego no esta iniciado, sin apretar la tecla enter" {
 		
 	assert.notThat(juego.juegoIniciado())
 

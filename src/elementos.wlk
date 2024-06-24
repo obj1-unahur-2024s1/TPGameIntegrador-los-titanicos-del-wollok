@@ -359,8 +359,7 @@ class Enemigo inherits Visual
 			})
 		}
 		
-		
-		
+	
 		method perderVidas(){
 			vidas = vidas -1
 		}
@@ -375,20 +374,40 @@ class Enemigo inherits Visual
 		}
 		
 		method cambiarImagen(){
-			
+		
 			image = "nivel" + (juego.nivelActualGetter() +1) + "/enemigo"+ vidas + ".png"
-			//image = "nivel1/enemigo" + vidas + ".png"
-			
-		}
-		
-		
+		}	
 }
 
 object fondoInicio inherits Visual(
 	position = game.origin(),
-	image="fondoInicio.png"){
-		
+	image="fondoInicio.png"){	
+}
+
+
+
+
+/*
+ * Estaba probando esto para ver si podia tener el cambio sin que sean 2 objetos
+object fondoNivel  {
+	var property position = game.origin()
+	var image
+	method image(n){
+		image = "nivel1/fondo" + (juego.nivelActualGetter() +1) + ".jpg"
 	}
+}
+*/
+object fondoNivel1 inherits Visual (
+	position = game.origin(),
+	image= "nivel1/fondo1.jpg"
+){
+}
+
+object fondoNivel2 inherits Visual (
+	position = game.origin(),
+	image= "nivel2/fondo2.jpg"
+){	
+}
 
 object nivelSalud inherits Visual(
 	position = game.at(1,14),
