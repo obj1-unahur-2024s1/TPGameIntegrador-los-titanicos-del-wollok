@@ -4,7 +4,7 @@
 
 - Albici, Belen
 - Chavez, Facundo
-- Di Biase, Leonardo
+- De Biase, Leonardo
 - Fisz, Gustavo
 - Gutierrez, Magali
 
