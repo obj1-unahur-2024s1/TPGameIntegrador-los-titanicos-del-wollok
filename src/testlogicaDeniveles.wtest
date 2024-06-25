@@ -32,5 +32,9 @@ describe "probando un poco el juego"{
 		assert.equals(2, nivel2.nivel())
 
     }
+    test "el nivel 1 es el primer nivel a ser jugado"{
+	assert.that(niveles.first() == nivel1)
+    }
+    
 
 }

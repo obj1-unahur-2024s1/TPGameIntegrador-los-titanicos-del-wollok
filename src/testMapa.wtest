@@ -28,6 +28,13 @@ import logicaDeNiveles.*
 			assert.that(boss.hayUnBorde())
 		}
 		
+		test " los mapas de los dos niveles son diferentes"{
+			assert.that(mapaNivel1 != mapaNivel2)
+		}
+		
+        test "existen 3 bloques de relleno en el nivel 1"{
+			assert.that(mapaNivel1.bloquesDeRelleno().size() == 3)
+		}
 		
 	}
 
