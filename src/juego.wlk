@@ -45,6 +45,7 @@ object juego{
 		game.clear()
 		cronometro.resetear()
 		boss.irAlInicio()
+		self.musicaGanaste()
 		game.addVisual(imagenGanaste)
 		game.schedule(5000, {=>
 			game.clear()
@@ -56,6 +57,18 @@ object juego{
 		self.finalizar()
 		game.addVisual(imagenPerdiste)
 		self.juegoIniciado(false)
+	}
+	
+	method musicaGanaste(){	
+		const musicaGanaste = game.sound("sonidos/winMusic.mp3")
+			musicaGanaste.play()
+			musicaGanaste.volume(0.5)
+	}
+	
+	method musicaPerdiste(){
+		const musicaPerdiste = game.sound("sonidos/gameOverMusic.mp3")
+			musicaPerdiste.play()
+			musicaPerdiste.volume(0.5)
 	}
 	
 	method iniciarMenu(){

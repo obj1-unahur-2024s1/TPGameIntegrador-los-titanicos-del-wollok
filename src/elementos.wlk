@@ -147,6 +147,7 @@ object boss {
 		position = game.at(1,1)
 		if(self.vidas() == 0){
 			juego.pantallaPerdiste()
+			juego.musicaPerdiste()
 		}		
 	}	
 	
@@ -455,6 +456,7 @@ object cronometro{
 				}
 				else{
 					juego.pantallaPerdiste()
+					juego.musicaPerdiste()
 				}
 			}
 		})
