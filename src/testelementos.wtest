@@ -1,6 +1,7 @@
 import elementos.*
 import wollok.game.*
 import logicaDeNiveles.*
+import juego.*
 
 describe "personajes del juego: bross y enemigos"{
 	
@@ -10,37 +11,65 @@ describe "personajes del juego: bross y enemigos"{
 	
 	test "la posicion inicial del personaje se ejecuta siempre en el mismo lugar" {
 		boss.irAlInicio()
-	assert.that( boss.position()== game.at(2,1))
-
-}
-test "boss saltando"{
-	boss.saltar()
+		assert.that( boss.position()== game.at(2,1))
 	
-	assert.that( boss.position()== game.at(2,2))
-}
-test "boss puede bajar"{
-	boss.bajar()
-	
-	assert.that(boss.position()==game.at(2,1))
-}
-test "puede perder vidas boss"{
-	boss.restarVidas()
-	assert.equals(2, boss.vidas())
-}
-test "incialmente el personaje no está en el tablero" {
-		assert.that(!game.hasVisual(boss))		
 	}
-test " cuando impacta con un enemigo, boss pierde una vida"{ 
-	const enemigo= new Enemigo(position=game.at(9,7), image='')
-	const id=enemigo.identity().toString()
-	boss.impactoCon(enemigo, id)    
 	
-	assert.equals(2,boss.vidas() )
-}
-test "reset la posición de enemigo "{
-	const enemigo= new Enemigo(position=game.at(9,7), image='')
-	enemigo.resetPosition(boss)
-	assert.that( enemigo.position()==game.at(9,7))
-}
+	test "Cuando ganas boss vuelve en el mismo lugar" {
+		juego.pantallaGanaste()
+		assert.that( boss.position()== game.at(2,1))
+	}
+	
+	test "boss saltando"{
+		boss.saltar()
+		assert.that( boss.position()== game.at(2,2))
+	}
+	
+	test "boss puede bajar"{
+		boss.bajar()
+		assert.that(boss.position()==game.at(2,1))
+	}
+	
+	test "boss esta en el nivel 1 "{
+	
+		juego.juegoIniciado(true)
+		assert.equals(0, juego.nivelActualGetter())
+	}
+	
+	test "boss esta en el nivel 2 "{
+		
+		juego.juegoIniciado(true)
+		juego.siguienteNivel()
+		assert.equals(1, juego.nivelActualGetter())
+	}
+	
+	test "Cuando inicia el juego, boss tiene 3 vidas"{
+		juego.juegoIniciado(true)
+		assert.equals(3, boss.vidas())
+	}
+	
+	test "puede perder vidas boss"{
+		boss.restarVidas()
+		assert.equals(2, boss.vidas())
+	}
+	
+	test "cuando impacta con un enemigo, boss pierde una vida"{ 
+		const enemigo= new Enemigo(position=game.at(9,7), image='')
+		const id=enemigo.identity().toString()
+		boss.impactoCon(enemigo, id)    
+		assert.equals(2,boss.vidas() )
+	}
+	
+	test "incialmente el personaje no está en el tablero" {
+			assert.that(!game.hasVisual(boss))		
+	}
+	
+	test "reset la posición de enemigo "{
+		const enemigo= new Enemigo(position=game.at(9,7), image='')
+		enemigo.resetPosition(boss)
+		assert.that( enemigo.position()==game.at(9,7))
+	}
+	
+	
 
 } 

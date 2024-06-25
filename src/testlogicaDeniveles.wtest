@@ -3,6 +3,7 @@ import logicaDeNiveles.*
 import wollok.game.*
 import mapas.*
 import elementos.*
+
 describe "probando un poco el juego"{
 	
 	method initialize() {
@@ -15,9 +16,21 @@ describe "probando un poco el juego"{
 
 }
  
-test "hay 2 niveles en el juego posibles para ser ejecutados por el momento"{
-	assert.equals(2, niveles.size())
-}
+	test "hay 2 niveles en el juego posibles para ser ejecutados por el momento"{
+		assert.equals(2, niveles.size())
+	}
 
+
+    test "Config varias de Nivel 1"{ 
+    	juego.nivelActualSetter(nivel1) 
+    	assert.equals(1, nivel1.nivel())
+    }
+
+
+    test "Config varias de Nivel 2"{ 
+    	juego.nivelActualSetter(nivel2)
+		assert.equals(2, nivel2.nivel())
+
+    }
 
 }
