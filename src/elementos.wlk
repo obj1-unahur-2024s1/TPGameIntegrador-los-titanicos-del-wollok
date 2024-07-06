@@ -235,7 +235,7 @@ class Enemigo inherits Visual
 		var posy = self.position().y()
 			
 
-		if(boss.position().x() > self.position().x() and !self.hayBloqueHaciaDerecha(mapaARepresentar))
+		if(boss.position().x() > self.position().x() and !self.hayBloqueHaciaDerecha(mapaARepresentar) and !self.nohayEnemigoHaciaDerecha(mapaARepresentar))
 		{position = game.at(posx + 1, posy) self.caer() } else self.verHaciaAbajo(mapaARepresentar)
 			
 		}
@@ -308,13 +308,31 @@ class Enemigo inherits Visual
 		method verHaciaAbajo(mapaARepresentar){
 			var posx = self.position().x()
 		    var posy = self.position().y()
-			if(boss.position().y() < self.position().y() and !self.hayBloqueHaciaAbajo(mapaARepresentar)) {position = game.at(posx, posy - 1)} else {self.verHaciaAtras(mapaARepresentar)}
+			if(boss.position().y() < self.position().y() and !self.hayBloqueHaciaAbajo(mapaARepresentar) and !self.nohayEnemigoHaciaAbajo(mapaARepresentar)) {position = game.at(posx, posy - 1)} else {self.verHaciaAtras(mapaARepresentar)}
+		}
+		
+		method nohayEnemigoHaciaAbajo(mapaARepresentar){
+			var posx = self.position().x()
+		    var posy = self.position().y()
+			return mapaARepresentar.enemigos().any({e => e.position().y() == posy - 1})
+		}
+		
+		method nohayEnemigoHaciaDerecha(mapaARepresentar){
+			var posx = self.position().x()
+		    var posy = self.position().y()
+			return mapaARepresentar.enemigos().any({e => e.position().x() == posx + 1})
+		}
+		
+		method nohayEnemigoHaciaIzquierda(mapaARepresentar){
+			var posx = self.position().x()
+		    var posy = self.position().y()
+			return mapaARepresentar.enemigos().any({e => e.position().x() == posx - 1})
 		}
 		
 		method verHaciaAtras(mapaARepresentar){
 			var posx = self.position().x()
 			var posy = self.position().y()
-			if(boss.position().x() < self.position().x() and !self.hayBloqueHaciaIzquierda(mapaARepresentar)){position = game.at(posx - 1, posy) self.caer()} else self.saltar()
+			if(boss.position().x() < self.position().x() and !self.hayBloqueHaciaIzquierda(mapaARepresentar) and !self.nohayEnemigoHaciaIzquierda(mapaARepresentar)){position = game.at(posx - 1, posy) self.caer()} else self.saltar()
 			
 		}
 		
